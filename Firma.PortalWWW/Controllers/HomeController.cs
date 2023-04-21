@@ -22,8 +22,8 @@ namespace Firma.PortalWWW.Controllers
         //     _logger = logger;
         // }
 
-        public IActionResult Index()
-        {
+        // public IActionResult Index()
+        // {
             // ViewBag.ModelParams =
             // (
             //     from parametr in _context.Params
@@ -41,7 +41,7 @@ namespace Firma.PortalWWW.Controllers
             //
             // if (id == null)
             // {
-            return View();
+            //return View();
             //     //id = _context.Page.First().IdStrony;
             // }
             // else
@@ -67,7 +67,7 @@ namespace Firma.PortalWWW.Controllers
             //
             //
             // return View(item);
-        }
+       // }
 
 
         // public IActionResult Index()
@@ -91,7 +91,7 @@ namespace Firma.PortalWWW.Controllers
             return View(); //widok będzie nazywał sie tak samo jak funkcja wiec mozna -> return View()
         }
 
-        public IActionResult Page(int? id)
+        public IActionResult Index(int? id)
         {
             ViewBag.ModelParams =
             (
