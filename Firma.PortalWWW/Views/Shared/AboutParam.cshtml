@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Firma.Data.Data.CMS.Params>
+@foreach (var item in Model)
+{
+    if (item.Nazwa.Equals("onas"))
+    {
+        <h5 class="grey-text text-lighten-4">@item.Tresc </h5>
+    }
+   
+
+}

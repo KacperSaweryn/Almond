@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Firma.Data.Data.CMS.Page>
+<div class="nav-wrapper container">
+    <a id="logo-container" href="https://localhost:7120/" class="brand-logo">Almond</a>
+    
+    <ul class="right hide-on-med-and-down">
+        <li>@Html.ActionLink("Strona główna", "Index", "Home")</li>
+        <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
+        <li>@Html.ActionLink("O nas", "Company", "Home")</li>
+        @foreach (var item in Model)
+        {
+            <li>@Html.ActionLink(item.LinkTytul, "Page", "Home", new {id=item.IdStrony},null)</li>
+        }
+       
+        
+    
+    
+    
+    </ul>
+    
+    <ul id="nav-mobile" class="sidenav">
+        <li>
+            <a href="#">Navbar Link</a>
+        </li>
+    </ul>
+    <a href="#" data-target="nav-mobile" class="sidenav-trigger">
+        <i class="material-icons">menu</i>
+    </a>
+    
+</div>
