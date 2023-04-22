@@ -12,47 +12,41 @@
 </head>
 <body>
 <nav class="grey-background" role="navigation">
-    @* <div class="nav-wrapper container"> *@
-    @* <a id="logo-container" href="https://localhost:7120/" class="brand-logo">Almond</a> *@
-    @* *@
-    @* <ul class="right hide-on-med-and-down"> *@
-   
-    @await Html.PartialAsync("Odnosniki", (IEnumerable<Firma.Data.Data.CMS.Page>)ViewBag.ModelStrony)
-    @* <div class="nav-wrapper container"> *@
-    @*     <a id="logo-container" href="https://localhost:7120/" class="brand-logo">Almond</a> *@
-    @* *@
-    @*     <ul class="right hide-on-med-and-down"> *@
-    @* *@
-    @* *@
-    @*   <li>@Html.ActionLink("Strona główna", "Index", "Home")</li> *@
-    @*   <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li> *@
-    @* <li>@Html.ActionLink("O nas", "Company", "Home")</li> *@
-    @* *@
-    @* *@
-    @* *@
-    @* *@
-    @*     </ul> *@
-    @* *@
-    @*     <ul id="nav-mobile" class="sidenav"> *@
-    @*         <li> *@
-    @*             <a href="#">Navbar Link</a> *@
-    @*         </li> *@
-    @*     </ul> *@
-    @*     <a href="#" data-target="nav-mobile" class="sidenav-trigger"> *@
-    @*         <i class="material-icons">menu</i> *@
-    @*     </a> *@
-    @* *@
-    @* </div> *@
+    <div class="nav-wrapper container">
+        <a id="logo-container" href="https://localhost:7120/" class="brand-logo">Almond</a>
+
+        <ul class="right hide-on-med-and-down">
+
+            @* @await Html.PartialAsync("Odnosniki", (IEnumerable<Firma.Data.Data.CMS.Page>)ViewBag.ModelStrony) *@
+
+
+            <li>@Html.ActionLink("Strona główna", "Index", "Home")</li>
+            <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
+            <li>@Html.ActionLink("O nas", "Company", "Home")</li>
+
+
+        </ul>
+
+        <ul id="nav-mobile" class="sidenav">
+            <li>
+                <a href="#">Navbar Link</a>
+            </li>
+        </ul>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger">
+            <i class="material-icons">menu</i>
+        </a>
+
+    </div>
 </nav>
 
-            @RenderBody()
+@RenderBody()
 
 <footer class="page-footer grey">
     <div class="container">
         <div class="row">
             <div class="col l6 s12">
-                    @await Html.PartialAsync("AboutParam", (IEnumerable<Firma.Data.Data.CMS.Params>)ViewBag.ModelParams)
-                @* <h5 class="grey-text text-lighten-4">O nas</h5> *@
+                @* @await Html.PartialAsync("AboutParam", (IEnumerable<Firma.Data.Data.CMS.Params>)ViewBag.ModelParams) *@ 
+                <h5 class="grey-text text-lighten-4">O nas</h5>
                 <p class="grey-text text-lighten-4">Jesteśmy profesjonalną hodowlą oraz firmą specjalizującą się w projektowaniu i produkcji funkcjonalnych oraz estetycznych drapaków dla Twojego kota.</p>
             </div>
             <div class="col l3 s12">
@@ -61,7 +55,7 @@
                     <li>
                         @Html.ActionLink("Polityka prywatności", "Privacy", "Home")
                     </li>
-                    
+
                 </ul>
             </div>
             <div class="col l3 s12">
@@ -98,7 +92,7 @@
                         var elems = document.querySelectorAll('.parallax');
                         var instances = M.Parallax.init(elems, options);
                     });</script>
-    <script>
+<script>
         document.addEventListener('DOMContentLoaded', function () {
             var elems = document.querySelectorAll('.dropdown-trigger');
             var instances = M.Dropdown.init(elems, options);
