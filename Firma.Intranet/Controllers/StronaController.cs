@@ -23,7 +23,7 @@ namespace Firma.Intranet.Controllers
         // GET: Strona
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Page.ToListAsync());
+            return View(await _context.Page.ToListAsync());
         }
 
         // GET: Strona/Details/5
@@ -55,7 +55,8 @@ namespace Firma.Intranet.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdStrony,LinkTytul,Tytul,Tresc,FotoUrl,Pozycja")] Page strona)
+        public async Task<IActionResult> Create(
+            [Bind("IdStrony,LinkTytul,Tytul,Tresc,FotoUrl,AltText,FotoUrlDown,AltTextDown,Pozycja")] Page strona)
         {
             if (ModelState.IsValid)
             {
@@ -63,6 +64,7 @@ namespace Firma.Intranet.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             return View(strona);
         }
 
@@ -79,6 +81,7 @@ namespace Firma.Intranet.Controllers
             {
                 return NotFound();
             }
+
             return View(strona);
         }
 
@@ -87,7 +90,8 @@ namespace Firma.Intranet.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdStrony,LinkTytul,Tytul,Tresc,FotoUrl,Pozycja")] Page strona)
+        public async Task<IActionResult> Edit(int id,
+            [Bind("IdStrony,LinkTytul,Tytul,Tresc,FotoUrl,AltText,FotoUrlDown,AltTextDown,Pozycja")] Page strona)
         {
             if (id != strona.IdStrony)
             {
@@ -112,8 +116,10 @@ namespace Firma.Intranet.Controllers
                         throw;
                     }
                 }
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(strona);
         }
 
@@ -144,19 +150,20 @@ namespace Firma.Intranet.Controllers
             {
                 return Problem("Entity set 'FirmaContext.Strona'  is null.");
             }
+
             var strona = await _context.Page.FindAsync(id);
             if (strona != null)
             {
                 _context.Page.Remove(strona);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool StronaExists(int id)
         {
-          return _context.Page.Any(e => e.IdStrony == id);
+            return _context.Page.Any(e => e.IdStrony == id);
         }
     }
 }

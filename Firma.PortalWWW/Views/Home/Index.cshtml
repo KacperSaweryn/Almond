@@ -14,10 +14,34 @@
 <div id="index-banner" class="parallax-container">
     <div class="section no-pad-bot">
         <div class="container">
-            <h1 class="header center grey-text text-lighten-4 ">@Model.Tytul</h1>
+            
+            @{
+                if (Model.Tytul.Equals("&nbsp;"))
+                {
+                    //<h1 class="header center grey-text text-lighten-4 "></h1>
+                }
+                else
+                {
+                    <h1 class="header center grey-text text-lighten-4 ">@Model.Tytul</h1>
+                }
+            }
+
+            
 
             <div class="row center">
-                <h5 class="header col s12 light">@Model.Tresc</h5>
+
+                @{
+                    if (Model.Tresc.Equals("&nbsp;"))
+                    {
+                       // <h5 class="header col s12 light"></h5>
+                    }
+                    else
+                    {
+                        <h5 class="header col s12 light">@Model.Tresc</h5>
+                    }
+                }
+
+
             </div>
             @* <div class="row center"> *@
             @*     <a href="/images/catmainecoon2.png" id="download-button" class="btn-large waves-effect waves-light grey-background lighten-1">Zobacz kota</a> *@
@@ -38,7 +62,7 @@
                 string firstPart = url.Substring(0, homeIndex);
                 string newSrc = $"{firstPart}{Model.FotoUrl}";
 
-                <div class="parallax"><img src="@newSrc" onerror="this.style.display='none'" alt="Slodki kotek"></div>
+                <div class="parallax"><img src="@newSrc" onerror="this.style.display='none'" alt="@Model.AltText"></div>
             }
             @* else *@
             @* { *@
@@ -46,7 +70,7 @@
             @* } *@
         } else
         {
-            <div class="parallax"><img src="@Model.FotoUrl" onerror="this.style.display='none'" alt="Slodki kotek"></div>
+            <div class="parallax"><img src="@Model.FotoUrl" onerror="this.style.display='none'" alt="@Model.AltText"></div>
         }
     }
     
@@ -93,7 +117,28 @@
     </div>
 </div>
 <div class="parallax-container">
-    <div class="parallax"><img src="~/images/catmainecoon1.jpg" alt="cat-photo"></div>
+    @{
+        if (Context.Request.Path.ToString().Contains("Home"))
+        {
+            string url = Context.Request.Path.ToString();
+            int homeIndex = url.IndexOf("Home", StringComparison.Ordinal);
+            if (homeIndex >= 0)
+            {
+                string firstPart = url.Substring(0, homeIndex);
+                string newSrc = $"{firstPart}{Model.FotoUrlDown}";
+
+                <div class="parallax"><img src="@newSrc" onerror="this.style.display='none'" alt="@Model.AltTextDown"></div>
+            }
+            @* else *@
+            @* { *@
+            @*     <div class="parallax"><img src="@Model.FotoUrl" onerror="this.style.display='none'" alt="Slodki kotek"></div> *@
+            @* } *@
+        }
+        else
+        {
+            <div class="parallax"><img src="@Model.FotoUrlDown" onerror="this.style.display='none'" alt="@Model.AltTextDown"></div>
+        }
+    }
 </div>
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="~/lib/materialize/js/materialize.js"></script>
