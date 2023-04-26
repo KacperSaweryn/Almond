@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Firma.Data.Data.CMS
@@ -22,6 +23,11 @@ namespace Firma.Data.Data.CMS
         [Display(Name = "Treść")]
         [Column(TypeName = "nvarchar(MAX)")]
         public string Tresc { get; set; }
+
+        [DefaultValue("")]
+        [Display(Name = "Zdjęcie na stronę")]
+        [Column(TypeName = "nvarchar(MAX)")]
+        public string FotoUrl { get; set; }
 
         [Required(ErrorMessage = "Pozycja wymagana")]
         [Display(Name = "Pozycja wyświetlania")]
