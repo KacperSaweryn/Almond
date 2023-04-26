@@ -55,7 +55,21 @@
                     <li>
                         @Html.ActionLink("Polityka prywatności", "Privacy", "Home")
                     </li>
-                    
+                    <li>
+                        <!-- Modal Trigger -->
+                        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+
+                        <!-- Modal Structure -->
+                        <div id="modal1" class="modal">
+                            <div class="modal-content">
+                                    <h4 class="header center grey-text">Polityka prywatnościr</h4>
+                                    <p class="header col s12 light">Szanujemy Twoją prywatność i dbamy o ochronę Twoich danych. Nie udostępniamy ich innym firmom lub osobom trzecim. Dane zbieramy wyłącznie w celach realizacji zamówienia lub kontaktu z Tobą. Zgodnie z obowiązującymi przepisami, masz prawo do wglądu, modyfikacji lub usunięcia swoich danych z naszej bazy. W razie pytań lub wątpliwości dotyczących prywatności, zachęcamy do kontaktu z nami.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                            </div>
+                        </div>
+                    </li>
 
                 </ul>
             </div>
@@ -92,15 +106,18 @@
                     document.addEventListener('DOMContentLoaded', function () {
                         var elems = document.querySelectorAll('.parallax');
                         var instances = M.Parallax.init(elems, options);
-                    });
- 
+                    });</script>
+<script>
         document.addEventListener('DOMContentLoaded', function () {
             var elems = document.querySelectorAll('.dropdown-trigger');
             var instances = M.Dropdown.init(elems, options);
+        });</script>
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.modal');
+            var instances = M.Modal.init(elems, options);
         });
-
-        $(document).ready(function () {
-            $('.modal').modal();
 </script>
+
 </body>
 </html>
