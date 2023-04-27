@@ -60,38 +60,40 @@
 
         <!--   Icon Section   -->
         <div class="row">
-            <div class="col s12 m4">
-                <div class="icon-block">
-                    <h2 class="center grey-text">
-                        <i class="material-icons">pets</i>
-                    </h2>
-                    <h5 class="center">Zwierzęta</h5>
-
-                    <p class="light">Jesteśmy hodowlą z długoletnią tradycją i osobnikami najlepszej klasy.</p>
-                </div>
-            </div>
-
-            <div class="col s12 m4">
-                <div class="icon-block">
-                    <h2 class="center grey-text">
-                        <i class="material-icons">restaurant</i>
-                    </h2>
-                    <h5 class="center">Jedzenie</h5>
-
-                    <p class="light">Pomagamy dobrać odpowiednią dietę dla Twojego pupila.</p>
-                </div>
-            </div>
-
-            <div class="col s12 m4">
-                <div class="icon-block">
-                    <h2 class="center grey-text">
-                        <i class="material-icons">park</i>
-                    </h2>
-                    <h5 class="center">Drapaki</h5>
-
-                    <p class="light">Tworzymy drapaki najlepszej klasy. Pozwól, aby Twój pupil poczuł się jak w dżungli.</p>
-                </div>
-            </div>
+            
+            @await Html.PartialAsync("News", (IEnumerable<Firma.Data.Data.CMS.News>)ViewBag.ModelAktualnosci)
+            @* <div class="col s12 m4"> *@
+            @*     <div class="icon-block"> *@
+            @*         <h2 class="center grey-text"> *@
+            @*             <i class="material-icons">pets</i> *@
+            @*         </h2> *@
+            @*         <h5 class="center">Zwierzęta</h5> *@
+            @* *@
+            @*         <p class="light">Jesteśmy hodowlą z długoletnią tradycją i osobnikami najlepszej klasy.</p> *@
+            @*     </div> *@
+            @* </div> *@
+            @* *@
+            @* <div class="col s12 m4"> *@
+            @*     <div class="icon-block"> *@
+            @*         <h2 class="center grey-text"> *@
+            @*             <i class="material-icons">restaurant</i> *@
+            @*         </h2> *@
+            @*         <h5 class="center">Jedzenie</h5> *@
+            @* *@
+            @*         <p class="light">Pomagamy dobrać odpowiednią dietę dla Twojego pupila.</p> *@
+            @*     </div> *@
+            @* </div> *@
+            @* *@
+            @* <div class="col s12 m4"> *@
+            @*     <div class="icon-block"> *@
+            @*         <h2 class="center grey-text"> *@
+            @*             <i class="material-icons">park</i> *@
+            @*         </h2> *@
+            @*         <h5 class="center">Drapaki</h5> *@
+            @* *@
+            @*         <p class="light">Tworzymy drapaki najlepszej klasy. Pozwól, aby Twój pupil poczuł się jak w dżungli.</p> *@
+            @*     </div> *@
+            @* </div> *@
         </div>
 
     </div>

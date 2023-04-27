@@ -24,6 +24,10 @@ namespace Firma.Data.Data.CMS
         [Column(TypeName = "nvarchar(MAX)")]
         public string Tresc { get; set; }
 
+        [Display(Name = "Ikona")]
+        [MaxLength(30, ErrorMessage = "Nazwa ikony może zawierać max 30 znaków")]
+        public string Icon { get; set; }
+
         [Required(ErrorMessage = "Pozycja wymagana")]
         [Display(Name = "Pozycja wyświetlania")]
         public int Pozycja { get; set; }
