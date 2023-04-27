@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using Firma.Data.Data;
 
 namespace Firma.PortalWWW.Controllers
@@ -91,6 +92,7 @@ namespace Firma.PortalWWW.Controllers
             return View(); //widok będzie nazywał sie tak samo jak funkcja wiec mozna -> return View()
         }
 
+        [SuppressMessage("ReSharper.DPA", "DPA0009: High execution time of DB command", MessageId = "time: 1123ms")]
         public IActionResult Index(int? id)
         {
             ViewBag.ModelParams =

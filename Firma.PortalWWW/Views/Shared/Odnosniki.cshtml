@@ -3,9 +3,7 @@
     <a id="logo-container" href="https://localhost:7120/" class="brand-logo">Almond</a>
 
     <ul class="right hide-on-med-and-down">
-        @* <li>@Html.ActionLink("Strona główna", "Index", "Home")</li> *@
-        @* <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li> *@
-        @* <li>@Html.ActionLink("O nas", "Company", "Home")</li> *@
+ 
         @foreach (var item in Model)
         {
             <li>@Html.ActionLink(item.LinkTytul, "Index", "Home", new {id=item.IdStrony},null)</li>

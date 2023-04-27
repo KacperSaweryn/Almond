@@ -2,23 +2,13 @@
 @{
     ViewData["Title"] = @Model.LinkTytul;
 }
-@* *@
-@* <h1 class="header center orange-text">@Model.Tytul</h1> *@
-@* <div class="row center"> *@
-@*     <h5 class="header col s12 light">@Model.Tresc</h5> *@
-@* </div> *@
-@{
-    // ViewData["Title"] = "Home Page";
 
-}
 <div id="index-banner" class="parallax-container">
     <div class="section no-pad-bot">
         <div class="container">
-            
             @{
                 if (Model.Tytul.Equals("&nbsp;"))
                 {
-                    //<h1 class="header center grey-text text-lighten-4 "></h1>
                 }
                 else
                 {
@@ -26,31 +16,20 @@
                 }
             }
 
-            
-
             <div class="row center">
 
                 @{
                     if (Model.Tresc.Equals("&nbsp;"))
                     {
-                       // <h5 class="header col s12 light"></h5>
                     }
                     else
                     {
                         <h5 class="header col s12 light">@Model.Tresc</h5>
                     }
                 }
-
-
             </div>
-            @* <div class="row center"> *@
-            @*     <a href="/images/catmainecoon2.png" id="download-button" class="btn-large waves-effect waves-light grey-background lighten-1">Zobacz kota</a> *@
-            @* </div> *@
         </div>
     </div>
-    @* ~/images/catmainecoon2.png TODO model url*@ 
-    
-   
 
     @{
         if (Context.Request.Path.ToString().Contains("Home"))
@@ -62,18 +41,19 @@
                 string firstPart = url.Substring(0, homeIndex);
                 string newSrc = $"{firstPart}{Model.FotoUrl}";
 
-                <div class="parallax"><img src="@newSrc" onerror="this.style.display='none'" alt="@Model.AltText"></div>
+                <div class="parallax">
+                    <img src="@newSrc" onerror="this.style.display='none'" alt="@Model.AltText">
+                </div>
             }
-            @* else *@
-            @* { *@
-            @*     <div class="parallax"><img src="@Model.FotoUrl" onerror="this.style.display='none'" alt="Slodki kotek"></div> *@
-            @* } *@
-        } else
+        }
+        else
         {
-            <div class="parallax"><img src="@Model.FotoUrl" onerror="this.style.display='none'" alt="@Model.AltText"></div>
+            <div class="parallax">
+                <img src="@Model.FotoUrl" onerror="this.style.display='none'" alt="@Model.AltText">
+            </div>
         }
     }
-    
+
 </div>
 <div class="container">
     <div class="section">
@@ -127,16 +107,16 @@
                 string firstPart = url.Substring(0, homeIndex);
                 string newSrc = $"{firstPart}{Model.FotoUrlDown}";
 
-                <div class="parallax"><img src="@newSrc" onerror="this.style.display='none'" alt="@Model.AltTextDown"></div>
+                <div class="parallax">
+                    <img src="@newSrc" onerror="this.style.display='none'" alt="@Model.AltTextDown">
+                </div>
             }
-            @* else *@
-            @* { *@
-            @*     <div class="parallax"><img src="@Model.FotoUrl" onerror="this.style.display='none'" alt="Slodki kotek"></div> *@
-            @* } *@
         }
         else
         {
-            <div class="parallax"><img src="@Model.FotoUrlDown" onerror="this.style.display='none'" alt="@Model.AltTextDown"></div>
+            <div class="parallax">
+                <img src="@Model.FotoUrlDown" onerror="this.style.display='none'" alt="@Model.AltTextDown">
+            </div>
         }
     }
 </div>
@@ -148,6 +128,3 @@
                         var elems = document.querySelectorAll('.parallax');
                         var instances = M.Parallax.init(elems, options);
                     });</script>
-
-
-
