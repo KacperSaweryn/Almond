@@ -55,3 +55,26 @@ p {
 footer.page-footer {
   margin: 0;
 }
+a.newsLink:link {
+    color: grey;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a.newsLink:visited {
+    color: grey;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a.newsLink:hover {
+    color: rgb(71, 71, 70);
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+a.newsLink:active {
+    color: rgb(71, 71, 70);
+    background-color: transparent;
+    text-decoration: underline;
+}

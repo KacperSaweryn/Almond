@@ -3,48 +3,54 @@
     ViewData["Title"] = @Model.LinkTytul;
 }
 
-
-<div class="container">
-    <div class="section">
-
-        <!--   Icon Section   -->
-        <div class="row">
-            <div class="col s12 m4">
-                <div class="icon-block">
-                    <h2 class="center grey-text">
-                        <i class="material-icons">pets</i>
-                    </h2>
-                    <h5 class="center">Zwierzęta</h5>
-
-                    <p class="light">Jesteśmy hodowlą z długoletnią tradycją i osobnikami najlepszej klasy.</p>
-                </div>
-            </div>
-
-            <div class="col s12 m4">
-                <div class="icon-block">
-                    <h2 class="center grey-text">
-                        <i class="material-icons">restaurant</i>
-                    </h2>
-                    <h5 class="center">Jedzenie</h5>
-
-                    <p class="light">Pomagamy dobrać odpowiednią dietę dla Twojego pupila.</p>
-                </div>
-            </div>
-
-            <div class="col s12 m4">
-                <div class="icon-block">
-                    <h2 class="center grey-text">
-                        <i class="material-icons">park</i>
-                    </h2>
-                    <h5 class="center">Drapaki</h5>
-
-                    <p class="light">Tworzymy drapaki najlepszej klasy. Pozwól, aby Twój pupil poczuł się jak w dżungli.</p>
-                </div>
-            </div>
-        </div>
-
-    </div>
+<h1 class="header center grey-text text-lighten-4 ">@Model.Tytul</h1>
+<div class="row center">
+    <h5 class="header col s12 light">@Model.Tresc</h5>
 </div>
+
+
+@* *@
+@* <div class="container"> *@
+@*     <div class="section"> *@
+@* *@
+@*         <!--   Icon Section   --> *@
+@*         <div class="row"> *@
+@*             <div class="col s12 m4"> *@
+@*                 <div class="icon-block"> *@
+@*                     <h2 class="center grey-text"> *@
+@*                         <i class="material-icons">pets</i> *@
+@*                     </h2> *@
+@*                     <h5 class="center">Zwierzęta</h5> *@
+@* *@
+@*                     <p class="light">Jesteśmy hodowlą z długoletnią tradycją i osobnikami najlepszej klasy.</p> *@
+@*                 </div> *@
+@*             </div> *@
+@* *@
+@*             <div class="col s12 m4"> *@
+@*                 <div class="icon-block"> *@
+@*                     <h2 class="center grey-text"> *@
+@*                         <i class="material-icons">restaurant</i> *@
+@*                     </h2> *@
+@*                     <h5 class="center">Jedzenie</h5> *@
+@* *@
+@*                     <p class="light">Pomagamy dobrać odpowiednią dietę dla Twojego pupila.</p> *@
+@*                 </div> *@
+@*             </div> *@
+@* *@
+@*             <div class="col s12 m4"> *@
+@*                 <div class="icon-block"> *@
+@*                     <h2 class="center grey-text"> *@
+@*                         <i class="material-icons">park</i> *@
+@*                     </h2> *@
+@*                     <h5 class="center">Drapaki</h5> *@
+@* *@
+@*                     <p class="light">Tworzymy drapaki najlepszej klasy. Pozwól, aby Twój pupil poczuł się jak w dżungli.</p> *@
+@*                 </div> *@
+@*             </div> *@
+@*         </div> *@
+@* *@
+@*     </div> *@
+@* </div> *@
 @* <div class="parallax-container"> *@
 @*     @{ *@
 @*         if (Context.Request.Path.ToString().Contains("Home")) *@

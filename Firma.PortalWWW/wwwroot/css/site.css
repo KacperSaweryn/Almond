@@ -16,3 +16,26 @@ html {
 body {
   margin-bottom: 60px;
 }
+a.news:link {
+    color: grey;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a.news:visited {
+    color: grey;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a.news:hover {
+    color: rgb(71, 71, 70);
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+a.news:active {
+    color: rgb(71, 71, 70);
+    background-color: transparent;
+    text-decoration: underline;
+}

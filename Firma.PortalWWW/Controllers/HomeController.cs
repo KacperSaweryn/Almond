@@ -11,7 +11,7 @@ namespace Firma.PortalWWW.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly AlmondContext _context;
+        protected readonly AlmondContext _context;
 
         public HomeController(AlmondContext context)
         {
@@ -108,7 +108,12 @@ namespace Firma.PortalWWW.Controllers
                 orderby strona.Pozycja
                 select strona
             ).ToList();
-
+            ViewBag.ModelAktualnosci =
+            (
+                from aktualnosc in _context.News
+                orderby aktualnosc.Pozycja
+                select aktualnosc
+            ).Take(3).ToList();
 
             if (id == null)
             {
@@ -117,6 +122,7 @@ namespace Firma.PortalWWW.Controllers
 
             var item = _context.Page.Find(id);
             return View(item);
+
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

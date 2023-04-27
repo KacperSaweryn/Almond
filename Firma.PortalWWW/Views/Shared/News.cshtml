@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Firma.Data.Data.CMS.News>
+﻿@using Microsoft.AspNetCore.Mvc.Rendering
+@model IEnumerable<Firma.Data.Data.CMS.News>
+
 <div class="section">
 
     <!--   Icon Section   -->
@@ -10,8 +12,11 @@
                     <i class="material-icons">@item.Icon</i> 
                 </h2>
                 <h5 class="center">
-                    @Html.ActionLink(item.LinkTytul, "Index", "News",
-                new { id = item.IdAktualnosci }, null)
+                    <font color="grey">
+                        @Html.ActionLink(item.LinkTytul, "Index", "News",
+                    new { id = item.IdAktualnosci }, new { @class = "news" })
+                    </font>
+                   
                 </h5>
                 <p class="light">@item.Tresc</p>
             </div>
@@ -19,3 +24,4 @@
     }
 </div>
 <br>
+
