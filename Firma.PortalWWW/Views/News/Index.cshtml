@@ -7,5 +7,39 @@
 <div class="row center">
     <h5 class="header col s12 light">@Model.Tresc</h5>
 </div>
+<br/>
+<div class="container">
+    <div class="section">
+        <div class="row center">
+            <p class="light-p left-align">@Model.Rozwiniecie</p>
+        </div>
+    </div>
+</div>
+<br/>
+
+@{
+    if (Context.Request.Path.ToString().Contains("News"))
+    {
+        string url = Context.Request.Path.ToString();
+        int homeIndex = url.IndexOf("News", StringComparison.Ordinal);
+        if (homeIndex >= 0)
+        {
+            string firstPart = url.Substring(0, homeIndex);
+            string newSrc = $"{firstPart}{Model.FotoUrl}";
+
+
+            <div class="row center">
+                <img class="responsive-img" src="@newSrc" onerror="this.style.display='none'" alt="@Model.AltText">
+            </div>
+        }
+    }
+    else
+    {
+        <div class="row center">
+            <img class="responsive-img" src="@Model.FotoUrl" onerror="this.style.display='none'" alt="@Model.AltText">
+        </div>
+    }
+}
+
 
 @* TODO zdjęcie *@

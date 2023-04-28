@@ -4545,20 +4545,20 @@ html {
 
 @media only screen and (min-width: 0) {
   html {
-    font-size: 14px;
+    font-size: 18px;
   }
 }
 
 @media only screen and (min-width: 992px) {
-  html {
-    font-size: 14.5px;
-  }
+    html {
+        font-size: 18px;
+    }
 }
 
 @media only screen and (min-width: 1200px) {
-  html {
-    font-size: 15px;
-  }
+    html {
+        font-size: 18px;
+    }
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -4620,6 +4620,13 @@ small {
 
 .light {
   font-weight: 300;
+    
+}
+
+.light-p {
+    font-weight: 350;
+    font-size: 20px;
+    text-align: justify
 }
 
 .thin {
