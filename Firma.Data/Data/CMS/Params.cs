@@ -24,6 +24,11 @@ namespace Firma.Data.Data.CMS
         [Column(TypeName = "nvarchar(MAX)")]
         public string Tresc { get; set; }
 
+        [Required(ErrorMessage = "Typ jest wymagany")]
+        [MaxLength(15, ErrorMessage = "Typ może zawierać max 15 znaków")]
+        [Display(Name = "Typ parametru")]
+        public string Typ { get; set; }
+
         [Required(ErrorMessage = "Pozycja wymagana")]
         [Display(Name = "Pozycja wyświetlania")]
         public int Pozycja { get; set; }

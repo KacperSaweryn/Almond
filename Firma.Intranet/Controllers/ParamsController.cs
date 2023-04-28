@@ -56,7 +56,7 @@ namespace Firma.Intranet.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdParametr,Nazwa,Tresc,Pozycja")] Params @params)
+        public async Task<IActionResult> Create([Bind("IdParametr,Nazwa,Tresc,Typ,Pozycja")] Params @params)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +88,7 @@ namespace Firma.Intranet.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdParametr,Nazwa,Tresc,Pozycja")] Params @params)
+        public async Task<IActionResult> Edit(int id, [Bind("IdParametr,Nazwa,Tresc,Typ,Pozycja")] Params @params)
         {
             if (id != @params.IdParametr)
             {

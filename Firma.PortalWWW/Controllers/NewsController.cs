@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics;
+using Firma.Data.Data.CMS;
 using Firma.PortalWWW.Models;
 
 namespace Firma.PortalWWW.Controllers
@@ -34,6 +35,15 @@ namespace Firma.PortalWWW.Controllers
                 orderby strona.Pozycja
                 select strona
             ).ToList();
+
+            ViewBag.ModelParamsFindUs =
+            (
+                from parametr in _context.Params
+                where parametr.Typ == "findUs"
+                orderby parametr.Pozycja
+                select parametr
+            ).ToList();
+
             ViewBag.ModelAktualnosci =
             (
                 from aktualnosc in _context.News
@@ -41,10 +51,10 @@ namespace Firma.PortalWWW.Controllers
                 select aktualnosc
             ).ToList();
 
-            // if (id == null)
-            // {
-            //     id = _context.Page.First().IdStrony;
-            // }
+            List<Page> list = new List<Page>();
+            foreach (Page page in (_context.Page.Where(strona => strona.LinkTytul == "Prywatność" || strona.LinkTytul == "Kontakt").OrderBy(strona => strona.Pozycja))) list.Add(page);
+            ViewBag.ModelInformacjeDodatkowe =
+                list;
 
             var item = _context.News.Find(id);
             return View(item);

@@ -25,35 +25,37 @@
                 @await Html.PartialAsync("AboutParam", (IEnumerable<Firma.Data.Data.CMS.Params>)ViewBag.ModelParams)
             </div>
             <div class="col l3 s12">
-                <h5 class="grey-text text-lighten-4">Prywatność</h5>
-                <ul>
-                    <li>
-                        @Html.ActionLink("Polityka prywatności", "Privacy", "Home")
-                    </li>
-                    
-
-                </ul>
+                @* <h5 class="grey-text text-lighten-4">Prywatność</h5> *@
+                @* <ul> *@
+                @*     <li> *@
+                @*         $1$ @Html.ActionLink("Polityka prywatności", "Privacy", "Home") #1# *@
+                @*             @await Html.PartialAsync("AboutParam", (IEnumerable<Firma.Data.Data.CMS.Params>)ViewBag.ModelPrivacy) *@
+                @*     </li> *@
+                @* </ul> *@
+                    @await Html.PartialAsync("InformacjeDodatkowe", (IEnumerable<Firma.Data.Data.CMS.Page>)ViewBag.ModelInformacjeDodatkowe)
             </div>
             <div class="col l3 s12">
-                <h5 class="grey-text text-lighten-4">Znajdź nas</h5>
-                <ul>
-                    <li>
-                        <a class="grey-text text-lighten-4" href="https://www.facebook.com/">
-                            <i class="material-icons">facebook</i>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="grey-text text-lighten-4" href="mailto:name@email.com">
-                            <i class="material-icons">mail</i>
-                        </a>
-                    </li>
-                </ul>
+                    @await Html.PartialAsync("ZnajdzNas", (IEnumerable<Firma.Data.Data.CMS.Params>)ViewBag.ModelParamsFindUs)
+
+                @* <h5 class="grey-text text-lighten-4">Znajdź nas</h5> *@
+                @* <ul> *@
+                @*     <li> *@
+                @*         <a class="grey-text text-lighten-4" href="https://www.facebook.com/"> *@
+                @*             <i class="material-icons">facebook</i> *@
+                @*         </a> *@
+                @*     </li> *@
+                @*     <li> *@
+                @*         <a class="grey-text text-lighten-4" href="mailto:name@email.com"> *@
+                @*             <i class="material-icons">mail</i> *@
+                @*         </a> *@
+                @*     </li> *@
+                @* </ul> *@
             </div>
         </div>
     </div>
-    <div class="footer-copyright">
-        <div class="container grey-text text-lighten-4">
-            Made by <a class="grey-text text-lighten-4" href="http://materializecss.com">Kacper z Materialize</a>
+        <div class="footer-copyright">
+            <div class="container grey-text text-lighten-4">
+                Made by <a class="grey-text text-lighten-4" href="https://www.wsb-nlu.edu.pl/">Kacper z WSB-NLU</a>
         </div>
     </div>
 </footer>

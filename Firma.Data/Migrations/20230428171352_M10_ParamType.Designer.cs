@@ -3,6 +3,7 @@ using Firma.Data.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Firma.Data.Migrations
 {
     [DbContext(typeof(AlmondContext))]
-    partial class AlmondContextModelSnapshot : ModelSnapshot
+    [Migration("20230428171352_M10_ParamType")]
+    partial class M10_ParamType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -108,15 +110,6 @@ namespace Firma.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdAktualnosci"), 1L, 1);
 
-                    b.Property<string>("AltText")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
-
-                    b.Property<string>("FotoUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(MAX)");
-
                     b.Property<string>("Icon")
                         .IsRequired()
                         .HasMaxLength(30)
@@ -129,10 +122,6 @@ namespace Firma.Data.Migrations
 
                     b.Property<int>("Pozycja")
                         .HasColumnType("int");
-
-                    b.Property<string>("Rozwiniecie")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(MAX)");
 
                     b.Property<string>("Tresc")
                         .IsRequired()
