@@ -20,16 +20,12 @@ namespace Firma.Data.Data
 
         public DbSet<News> News { get; set; }
 
-        public DbSet<Drapak>? Drapak { get; set; }
-
-        public DbSet<Kot>? Kot { get; set; }
         public DbSet<Params>? Params { get; set; }
         public DbSet<Cat>? Cat { get; set; }
         public DbSet<CatTree>? CatTree { get; set; }
-      
-        public DbSet<Test>? Test { get; set; }
-        public DbSet<KotRodzaj>? KotRodzaj { get; set; }
-        public DbSet<DrapakRodzaj>? DrapakRodzaj { get; set; }
+        public DbSet<Item>? Item { get; set; }
+        public DbSet<ItemType>? ItemType { get; set; }
+    
     }
 }
 

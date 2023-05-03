@@ -82,7 +82,11 @@ body {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-
+.item-photo {
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: contain;
+}
 hr {
   margin: 1rem 0;
   color: inherit;
@@ -598,7 +602,7 @@ progress {
   background-color: #fff;
   border: 1px solid #dee2e6;
   border-radius: 0.25rem;
-  max-width: 100%;
+  max-width: 50%;
   height: auto;
 }
 
@@ -11216,6 +11220,12 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+
+    .item-photo {
+        max-width: 100px;
+        max-height: 100px;
+        object-fit: contain;
+    }
 }
 
 /*# sourceMappingURL=bootstrap.css.map */

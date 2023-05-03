@@ -64,7 +64,7 @@ namespace Firma.PortalWWW.Controllers
             ViewBag.ModelAktualnosci =
             (
                 from aktualnosc in _context.News
-                orderby aktualnosc.Pozycja
+                orderby aktualnosc.Pozycja descending 
                 select aktualnosc
             ).Take(3).ToList();
 

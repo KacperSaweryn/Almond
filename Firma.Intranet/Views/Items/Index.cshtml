@@ -1,0 +1,149 @@
+﻿@model IEnumerable<Firma.Data.Data.Sklep.Item>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+
+<div class="table-responsive">
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.InfoGlowne)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Opis)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cena)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Photo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsActive)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Pozycja)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ItemType)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.InfoGlowne)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Opis)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cena)
+                    </td>
+                    <td>
+                        <img src="data:image;base64,@System.Convert.ToBase64String(item.Photo)" class="img-thumbnail item-photo" alt="Item Photo">
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsActive)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pozycja)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ItemType.Nazwa)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ItemId" class="btn btn-sm btn-warning">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.ItemId" class="btn btn-sm btn-info">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.ItemId" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+@* @model IEnumerable<Firma.Data.Data.Sklep.Item> *@
+@* *@
+@* @{ *@
+@*     ViewData["Title"] = "Index"; *@
+@* } *@
+@* *@
+@* <h1>Index</h1> *@
+@* *@
+@* <p> *@
+@*     <a asp-action="Create">Create New</a> *@
+@* </p> *@
+@* <table class="table"> *@
+@*     <thead> *@
+@*     <tr> *@
+@*         <th> *@
+@*             @Html.DisplayNameFor(model => model.InfoGlowne) *@
+@*         </th> *@
+@*         <th> *@
+@*             @Html.DisplayNameFor(model => model.Opis) *@
+@*         </th> *@
+@*         <th> *@
+@*             @Html.DisplayNameFor(model => model.Cena) *@
+@*         </th> *@
+@*         <th> *@
+@*             @Html.DisplayNameFor(model => model.Photo) *@
+@*         </th> *@
+@*         <th> *@
+@*             @Html.DisplayNameFor(model => model.IsActive) *@
+@*         </th> *@
+@*         <th> *@
+@*             @Html.DisplayNameFor(model => model.Pozycja) *@
+@*         </th> *@
+@*         <th> *@
+@*             @Html.DisplayNameFor(model => model.ItemType) *@
+@*         </th> *@
+@*         <th></th> *@
+@*     </tr> *@
+@*     </thead> *@
+@*     <tbody> *@
+@*     @foreach (var item in Model) *@
+@*     { *@
+@*         <tr> *@
+@*             <td> *@
+@*                 @Html.DisplayFor(modelItem => item.InfoGlowne) *@
+@*             </td> *@
+@*             <td> *@
+@*                 @Html.DisplayFor(modelItem => item.Opis) *@
+@*             </td> *@
+@*             <td> *@
+@*                 @Html.DisplayFor(modelItem => item.Cena) *@
+@*             </td> *@
+@*             <td> *@
+@*                 <img src="data:image;base64,@System.Convert.ToBase64String(item.Photo)" class="item-photo"/> *@
+@*             </td> *@
+@*             <td> *@
+@*                 @Html.DisplayFor(modelItem => item.IsActive) *@
+@*             </td> *@
+@*             <td> *@
+@*                 @Html.DisplayFor(modelItem => item.Pozycja) *@
+@*             </td> *@
+@*             <td> *@
+@*                 @Html.DisplayFor(modelItem => item.ItemType.Nazwa) *@
+@*             </td> *@
+@*             <td> *@
+@*                 <a asp-action="Edit" asp-route-id="@item.ItemId">Edit</a> | *@
+@*                 <a asp-action="Details" asp-route-id="@item.ItemId">Details</a> | *@
+@*                 <a asp-action="Delete" asp-route-id="@item.ItemId">Delete</a> *@
+@*             </td> *@
+@*         </tr> *@
+@*     } *@
+@*     </tbody> *@
+@* </table> *@
