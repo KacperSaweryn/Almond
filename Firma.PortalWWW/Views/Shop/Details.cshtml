@@ -3,35 +3,204 @@
     ViewData["Title"] = "Szczegóły";
     Layout = "~/Views/Shared/_SklepLayout.cshtml";
 }
+
 <div class="row">
     <div class="col s12 m8 offset-m2">
         <div class="card-panel">
             <div class="row">
-                <div class="col s12 m6">
-                    <a href="data:image;base64,@System.Convert.ToBase64String(Model.Photo)" data-caption="@Model.InfoGlowne" class="materialboxed">
-                        <img src="data:image;base64,@System.Convert.ToBase64String(Model.Photo)" alt="@Model.InfoGlowne" style="max-width: 100%;">
+                <div class="col s12">
+                    <a class="modal-trigger" href="#modal1">
+                        <img src="data:image;base64,@System.Convert.ToBase64String(Model.Photo)" alt="@Model.InfoGlowne" class="responsive-img center-block" style="object-fit: contain; max-height: 400px;">
                     </a>
                 </div>
-                <div class="col s12 m6">
-                    <div class="row">
-                        <h4>@Model.InfoGlowne</h4>
-                        <p>Cena: @Model.Cena.ToString("F2") zł</p>
-                        <p>Opis: @Model.Opis</p>
-                    </div>
-                    <div class="row">
-                        <div class="col s12">
-                            <a href="@Url.Action("Index", "Shop")" class="waves-effect waves-light btn grey darken-1">Powrót do sklepu</a>
-                            <button class="waves-effect waves-light btn red">
-                                <i class="material-icons left">add_shopping_cart</i>
-                                DODAJ DO KOSZYKA
-                            </button>
-                        </div>
-                    </div>
+                <div class="col s12">
+                    <h5 class="left-align">@Model.InfoGlowne</h5>
+                    <h6 class="left-align">Cena: @Model.Cena.ToString("F2") zł</h6>
+                </div>
+                <div class="col s12">
+                    <p class="justify">@Model.Opis</p>
+                </div>
+                <div class="col s12">
+                    <a href="@Url.Action("Index", "Shop")" class="waves-effect waves-light btn grey darken-1">Powrót do sklepu</a>
+                    <button class="waves-effect waves-light btn orange">
+                        <i class="material-icons left">add_shopping_cart</i>
+                        DODAJ DO KOSZYKA
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <img src="data:image;base64,@System.Convert.ToBase64String(Model.Photo)" alt="@Model.InfoGlowne" class="responsive-img center-block" style="object-fit: contain;">
+    </div>
+</div>
+
+
+
+@* @model Firma.Data.Data.Sklep.Item *@
+@* @{ *@
+@*     ViewData["Title"] = "Szczegóły"; *@
+@*     Layout = "~/Views/Shared/_SklepLayout.cshtml"; *@
+@* } *@
+@* *@
+@* <div class="row"> *@
+@*     <div class="col s12 m8 offset-m2"> *@
+@*         <div class="card-panel"> *@
+@*             <div class="row"> *@
+@*                 <div class="col s12"> *@
+@*                     <a class="modal-trigger" href="#modal1"> *@
+@*                         <img src="data:image;base64,@System.Convert.ToBase64String(Model.Photo)" alt="@Model.InfoGlowne" class="responsive-img center-block" style="max-width: 500px;"> *@
+@*                     </a> *@
+@*                 </div> *@
+@*                 <div class="col s12"> *@
+@*                     <h5 class="left-align">@Model.InfoGlowne</h5> *@
+@*                     <h6 class="left-align">Cena: @Model.Cena.ToString("F2") zł</h6> *@
+@*                 </div> *@
+@*                 <div class="col s12"> *@
+@*                     <p class="justify">@Model.Opis</p> *@
+@*                 </div> *@
+@*                 <div class="col s12" style="margin-top: 20px;"> *@
+@*                     <a href="@Url.Action("Index", "Shop")" class="waves-effect waves-light btn grey darken-1" style="margin-right: 10px;">Powrót do sklepu</a> *@
+@*                     <button class="waves-effect waves-light btn orange"> *@
+@*                         <i class="material-icons left">add_shopping_cart</i> *@
+@*                         DODAJ DO KOSZYKA *@
+@*                     </button> *@
+@*                 </div> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
+@* *@
+@* <!-- Modal Structure --> *@
+@* <div id="modal1" class="modal"> *@
+@*     <div class="modal-content"> *@
+@*         <img src="data:image;base64,@System.Convert.ToBase64String(Model.Photo)" alt="@Model.InfoGlowne" class="responsive-img center-block" style="max-width: 100%;"> *@
+@*     </div> *@
+@* </div> *@
+
+
+@* @model Firma.Data.Data.Sklep.Item *@
+@* @{ *@
+@*     ViewData["Title"] = "Szczegóły"; *@
+@*     Layout = "~/Views/Shared/_SklepLayout.cshtml"; *@
+@* } *@
+@* *@
+@* <div class="row"> *@
+@*     <div class="col s12 m8 offset-m2"> *@
+@*         <div class="card-panel"> *@
+@*             <div class="row"> *@
+@*                 <div class="col s12"> *@
+@*                      *@
+@*                     <a class="modal-trigger" href="#modal1"> *@
+@*                         <img src="data:image;base64,@System.Convert.ToBase64String(Model.Photo)" alt="@Model.InfoGlowne" class="responsive-img center-block" style="max-width: 500px;"> *@
+@*                     </a> *@
+@*                 </div> *@
+@*                 <div class="col s12"> *@
+@*                     <h5 class="left-align">@Model.InfoGlowne</h5> *@
+@*                     <h6 class="left-align">Cena: @Model.Cena.ToString("F2") zł</h6> *@
+@*                 </div> *@
+@*                 <div class="col s12"> *@
+@*                     <p class="justify">@Model.Opis</p> *@
+@*                 </div> *@
+@*                 <div class="col s12"> *@
+@*                     <a href="@Url.Action("Index", "Shop")" class="waves-effect waves-light btn grey darken-1">Powrót do sklepu</a> *@
+@*                     <button class="waves-effect waves-light btn orange"> *@
+@*                         <i class="material-icons left">add_shopping_cart</i> *@
+@*                         DODAJ DO KOSZYKA *@
+@*                     </button> *@
+@*                 </div> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
+@* *@
+@* *@
+@* <!-- Modal Structure --> *@
+@* <div id="modal1" class="modal"> *@
+@*     <div class="modal-content"> *@
+@*         <img src="data:image;base64,@System.Convert.ToBase64String(Model.Photo)" alt="@Model.InfoGlowne" class="responsive-img center-block" style="max-width: 100%;"> *@
+@*     </div> *@
+@* </div> *@
+
+@* @section Scripts { *@
+@*     <script> *@
+@*         // Initialize Modal *@
+@*         $(document).ready(function(){ *@
+@*             $('.modal').modal(); *@
+@*         }); *@
+@*     </script> *@
+@* } *@
+
+@* <div class="row"> *@
+@*     <div class="col s12 m8 offset-m2"> *@
+@*         <div class="card-panel"> *@
+@*             <div class="row"> *@
+@*                 <div class="col s12"> *@
+@*                     <div class="center-align"> *@
+@*                         <a href="data:image;base64,@System.Convert.ToBase64String(Model.Photo)" data-caption="@Model.InfoGlowne" class="materialboxed"> *@
+@*                             <img src="data:image;base64,@System.Convert.ToBase64String(Model.Photo)" alt="@Model.InfoGlowne" style="max-width: 100%;"> *@
+@*                         </a> *@
+@*                     </div> *@
+@*                 </div> *@
+@*             </div> *@
+@*             <div class="row"> *@
+@*                 <div class="col s12"> *@
+@*                     <div class="left-align"> *@
+@*                         <h5>@Model.InfoGlowne</h5> *@
+@*                         <h6>Cena: @Model.Cena.ToString("F2") zł</h6> *@
+@*                     </div> *@
+@*                     <div class="justify"> *@
+@*                         <p>@Model.Opis</p> *@
+@*                     </div> *@
+@*                     <div class="row"> *@
+@*                         <div class="col s12"> *@
+@*                             <a href="@Url.Action("Index", "Shop")" class="waves-effect waves-light btn grey darken-1">Powrót do sklepu</a> *@
+@*                             <button class="waves-effect waves-light btn red"> *@
+@*                                 <i class="material-icons left">add_shopping_cart</i> *@
+@*                                 DODAJ DO KOSZYKA *@
+@*                             </button> *@
+@*                         </div> *@
+@*                     </div> *@
+@*                 </div> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
+
+
+@* <div class="row"> *@
+@*     <div class="col s12 m8 offset-m2"> *@
+@*         <div class="card-panel"> *@
+@*             <div class="row"> *@
+@*                 <div class="col s12 m6"> *@
+@*                     <a href="data:image;base64,@System.Convert.ToBase64String(Model.Photo)" data-caption="@Model.InfoGlowne" class="materialboxed"> *@
+@*                         <img src="data:image;base64,@System.Convert.ToBase64String(Model.Photo)" alt="@Model.InfoGlowne" style="max-width: 100%;"> *@
+@*                     </a> *@
+@*                 </div> *@
+@*                 <div class="col s12 m6"> *@
+@*                     <div class="row"> *@
+@*                         <h4>@Model.InfoGlowne</h4> *@
+@*                         <p>Cena: @Model.Cena.ToString("F2") zł</p> *@
+@*                         <p>Opis: @Model.Opis</p> *@
+@*                     </div> *@
+@*                     <div class="row"> *@
+@*                         <div class="col s12"> *@
+@*                             <a href="@Url.Action("Index", "Shop")" class="waves-effect waves-light btn grey darken-1">Powrót do sklepu</a> *@
+@*                             <button class="waves-effect waves-light btn red"> *@
+@*                                 <i class="material-icons left">add_shopping_cart</i> *@
+@*                                 DODAJ DO KOSZYKA *@
+@*                             </button> *@
+@*                         </div> *@
+@*                     </div> *@
+@*                 </div> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
 @* *@
 @* <div class="card-panel"> *@
 @*     <div class="row"> *@
@@ -128,4 +297,3 @@
 @*         </div> *@
 @*     </div> *@
 @* </div> *@
-

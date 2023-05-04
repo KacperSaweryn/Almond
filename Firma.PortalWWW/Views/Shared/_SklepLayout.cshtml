@@ -23,11 +23,11 @@
 
 <footer class="page-footer grey">
     @* <div class="container"> *@
-        <div class="footer-copyright">
-            <div class="container grey-text text-lighten-4">
-                @* Made by <a class="grey-text text-lighten-4" href="https://www.wsb-nlu.edu.pl/">Kacper z WSB-NLU</a> *@
-            </div>
+    <div class="footer-copyright">
+        <div class="container grey-text text-lighten-4">
+            @* Made by <a class="grey-text text-lighten-4" href="https://www.wsb-nlu.edu.pl/">Kacper z WSB-NLU</a> *@
         </div>
+    </div>
     @* </div> *@
 </footer>
 
@@ -41,7 +41,9 @@
             var elems = document.querySelectorAll('.parallax');
             var instances = M.Parallax.init(elems, options);
         });
+    </script>
 
+<script>
         document.addEventListener('DOMContentLoaded', function () {
             var elems = document.querySelectorAll('.dropdown-trigger');
             var instances = M.Dropdown.init(elems, options);
@@ -49,6 +51,12 @@
 
         $(document).ready(function () {
             $('.modal').modal();
+    </script>
+<script>
+        // Initialize Modal
+        $(document).ready(function(){
+            $('.modal').modal();
+        });
     </script>
 </body>
 </html>
