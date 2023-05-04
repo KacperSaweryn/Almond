@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Firma.Data.Data.Sklep.Item>
+@{
+    ViewData["Title"] = "Sklep";
+    Layout = "~/Views/Shared/_SklepLayout.cshtml";
+}
+
+@foreach (var towar in Model)
+{
+    <div class="col s12 m6 l4">
+        <div class="card">
+            <div class="card-image" style="display: flex; justify-content: center; align-items: center;">
+                @if (towar.Photo != null && towar.Photo.Length > 0)
+                {
+                    <img src="@($"data:image/jpeg;base64,{Convert.ToBase64String(towar.Photo)}")" alt="@towar.InfoGlowne" style="width: 200px; height: 200px;">
+                }
+                else
+                {
+                    <img src="" alt="@towar.InfoGlowne" style="width: 200px; height: 200px;">
+                }
+            </div>
+            <div class="card-content">
+                <span class="card-title">@towar.InfoGlowne</span>
+                <p>Cena: @towar.Cena.ToString("F2") zł</p>
+            </div>
+            <div class="card-action">
+                @Html.ActionLink("Zobacz szczegóły", "Details", "Shop", new { id = towar.ItemId }, new { @class = "waves-effect waves-light btn" })
+            </div>
+        </div>
+    </div>
+}
+
+
+
+@* *@
+@* @model IEnumerable<Firma.Data.Data.Sklep.Item> *@
+@* @{ *@
+@*     ViewData["Title"] = "Sklep"; *@
+@*     Layout = "~/Views/Shared/_SklepLayout.cshtml"; *@
+@* } *@
+@* *@
+@* <div class="row"> *@
+@*     @foreach (var towar in Model) *@
+@*     { *@
+@*         <div class="col s12 m6 l4"> *@
+@*             <div class="card"> *@
+@*                 <div class="card-image" style="display: flex; justify-content: center; align-items: center;"> *@
+@*                     <img src="@towar.Photo" alt="@towar.InfoGlowne" style="width: 200px; height: 200px;"> *@
+@*                 </div> *@
+@*                 <div class="card-content"> *@
+@*                     <span class="card-title">@towar.InfoGlowne</span> *@
+@*                     <p>Cena: @towar.Cena.ToString("F2") zł</p> *@
+@*                 </div> *@
+@*                 <div class="card-action"> *@
+@*                     @Html.ActionLink("Zobacz szczegóły", "Details", "Shop", new { id = towar.ItemId }, new { @class = "waves-effect waves-light btn" }) *@
+@*                 </div> *@
+@*             </div> *@
+@*         </div> *@
+@*     } *@
+@* </div> *@

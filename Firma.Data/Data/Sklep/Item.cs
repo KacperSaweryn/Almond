@@ -27,7 +27,7 @@ namespace Firma.Data.Data.Sklep
 
         [Required(ErrorMessage = "Zdjęcie jest wymagane")]
         [Display(Name = "Wybierz zdjęcie")]
-        public byte[]? Photo { get; set; }
+        public byte[] Photo { get; set; }
 
         [DefaultValue(true)]
         public bool IsActive { get; set; }

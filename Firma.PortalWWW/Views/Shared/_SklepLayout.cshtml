@@ -12,32 +12,23 @@
 </head>
 <body>
 <nav class="grey-background" role="navigation">
-    @await Html.PartialAsync("Odnosniki", (IEnumerable<Firma.Data.Data.CMS.Page>)ViewBag.ModelStrony)
+    @await Html.PartialAsync("TypesMenu", (IEnumerable<Firma.Data.Data.Sklep.ItemType>)ViewBag.ItemTypes)
 </nav>
+<div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+        @RenderBody()
+    </div>
+</div>
 
-@RenderBody()
 
 <footer class="page-footer grey">
-    <div class="container">
-        <div class="row">
-            <div class="col l6 s12">
-                @await Html.PartialAsync("AboutParam", (IEnumerable<Firma.Data.Data.CMS.Params>)ViewBag.ModelParams)
-            </div>
-            <div class="col l3 s12">
-              
-                    @await Html.PartialAsync("InformacjeDodatkowe", (IEnumerable<Firma.Data.Data.CMS.Page>)ViewBag.ModelInformacjeDodatkowe)
-            </div>
-            <div class="col l3 s12">
-                    @await Html.PartialAsync("ZnajdzNas", (IEnumerable<Firma.Data.Data.CMS.Params>)ViewBag.ModelParamsFindUs)
-
-            </div>
-        </div>
-    </div>
+    @* <div class="container"> *@
         <div class="footer-copyright">
             <div class="container grey-text text-lighten-4">
-               
+                @* Made by <a class="grey-text text-lighten-4" href="https://www.wsb-nlu.edu.pl/">Kacper z WSB-NLU</a> *@
+            </div>
         </div>
-    </div>
+    @* </div> *@
 </footer>
 
 
@@ -46,11 +37,11 @@
 <script src="~/lib/materialize/js/materialize.js"></script>
 <script src="~/js/init.js"></script>
 <script>
-                    document.addEventListener('DOMContentLoaded', function () {
-                        var elems = document.querySelectorAll('.parallax');
-                        var instances = M.Parallax.init(elems, options);
-                    });
- 
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.parallax');
+            var instances = M.Parallax.init(elems, options);
+        });
+
         document.addEventListener('DOMContentLoaded', function () {
             var elems = document.querySelectorAll('.dropdown-trigger');
             var instances = M.Dropdown.init(elems, options);
@@ -58,6 +49,6 @@
 
         $(document).ready(function () {
             $('.modal').modal();
-</script>
+    </script>
 </body>
 </html>
