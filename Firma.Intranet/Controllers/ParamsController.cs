@@ -10,17 +10,12 @@ using Firma.Data.Data.CMS;
 
 namespace Firma.Intranet.Controllers
 {
-    public class ParamsController : Controller
+    public class ParamsController : BaseController
     {
-        private readonly AlmondContext _context;
-
-        public ParamsController(AlmondContext context)
-        {
-            _context = context;
-        }
+      
 
         // GET: Params
-        public async Task<IActionResult> Index()
+        public override async Task<IActionResult> Index()
         {
               return _context.Params != null ? 
                           View(await _context.Params.ToListAsync()) :
@@ -28,7 +23,7 @@ namespace Firma.Intranet.Controllers
         }
 
         // GET: Params/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public override async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Params == null)
             {
@@ -45,12 +40,7 @@ namespace Firma.Intranet.Controllers
             return View(@params);
         }
 
-        // GET: Params/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
+       
         // POST: Params/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -68,7 +58,7 @@ namespace Firma.Intranet.Controllers
         }
 
         // GET: Params/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public override async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Params == null)
             {
@@ -119,7 +109,7 @@ namespace Firma.Intranet.Controllers
         }
 
         // GET: Params/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public override async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Params == null)
             {
@@ -158,6 +148,10 @@ namespace Firma.Intranet.Controllers
         private bool ParamsExists(int id)
         {
           return (_context.Params?.Any(e => e.IdParametr == id)).GetValueOrDefault();
+        }
+
+        public ParamsController(AlmondContext context) : base(context)
+        {
         }
     }
 }

@@ -10,24 +10,21 @@ using Firma.Data.Data.Sklep;
 
 namespace Firma.Intranet.Controllers
 {
-    public class ItemsController : Controller
+    public class ItemsController : BaseController
     {
-        private readonly AlmondContext _context;
 
-        public ItemsController(AlmondContext context)
+        public ItemsController(AlmondContext context) : base(context)
         {
-            _context = context;
         }
-
         // GET: Items
-        public async Task<IActionResult> Index()
+        public override async Task<IActionResult> Index()
         {
             var almondContext = _context.Item.Include(i => i.ItemType);
             return View(await almondContext.ToListAsync());
         }
 
         // GET: Items/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public override async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Item == null)
             {
@@ -46,7 +43,7 @@ namespace Firma.Intranet.Controllers
         }
 
         // GET: Items/Create
-        public IActionResult Create()
+        public override IActionResult Create()
         {
             ViewData["ItemTypeId"] = new SelectList(_context.ItemType, "ItemTypeId", "Nazwa");
             return View();
@@ -60,8 +57,7 @@ namespace Firma.Intranet.Controllers
         public async Task<IActionResult> Create(
             [Bind("ItemId,InfoGlowne,Opis,Cena,IsActive,ItemTypeId,Pozycja")] Item item, IFormFile photo)
         {
-            //if (ModelState.IsValid)
-           // {
+            
                 if (photo != null && photo.Length > 0)
                 {
                     using (var ms = new MemoryStream())
@@ -74,22 +70,13 @@ namespace Firma.Intranet.Controllers
             _context.Add(item);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-          //  }
 
-            ViewData["ItemTypeId"] = new SelectList(_context.ItemType, "ItemTypeId", "Nazwa", item.ItemTypeId);
-            //return View(item);
-            // if (ModelState.IsValid)
-            // {
-            //     _context.Add(item);
-            //     await _context.SaveChangesAsync();
-            //     return RedirectToAction(nameof(Index));
-            // }
-            // ViewData["ItemTypeId"] = new SelectList(_context.ItemType, "ItemTypeId", "Nazwa", item.ItemTypeId);
-            // return View(item);
+                ViewData["ItemTypeId"] = new SelectList(_context.ItemType, "ItemTypeId", "Nazwa", item.ItemTypeId);
+         
         }
 
         // GET: Items/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public override async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Item == null)
             {
@@ -149,51 +136,6 @@ namespace Firma.Intranet.Controllers
             return View(item);
         }
 
-        // POST: Items/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        // public async Task<IActionResult> Edit(int id,
-        //     [Bind("ItemId,InfoGlowne,Opis,Cena,IsActive,ItemTypeId,Pozycja")] Item item, IFormFile photo)
-        // {
-        //     if (id != item.ItemId)
-        //     {
-        //         return NotFound();
-        //     }
-        //
-        //     if (ModelState.IsValid)
-        //     {
-        //         if (photo != null && photo.Length > 0)
-        //         {
-        //             using (var ms = new MemoryStream())
-        //             {
-        //                 photo.CopyTo(ms);
-        //                 item.Photo = ms.ToArray();
-        //             }
-        //         }
-        //
-        //         try
-        //         {
-        //             _context.Update(item);
-        //             await _context.SaveChangesAsync();
-        //         }
-        //         catch (DbUpdateConcurrencyException)
-        //         {
-        //             if (!ItemExists(item.ItemId))
-        //             {
-        //                 return NotFound();
-        //             }
-        //             else
-        //             {
-        //                 throw;
-        //             }
-        //         }
-        //
-        //         return RedirectToAction(nameof(Index));
-        //     }
-        //
-        //     ViewData["ItemTypeId"] = new SelectList(_context.ItemType, "ItemTypeId", "Nazwa", item.ItemTypeId);
-        //     return View(item);
-        // }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -233,7 +175,7 @@ namespace Firma.Intranet.Controllers
         }
 
         // GET: Items/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public override async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Item == null)
             {
@@ -275,5 +217,7 @@ namespace Firma.Intranet.Controllers
         {
             return (_context.Item?.Any(e => e.ItemId == id)).GetValueOrDefault();
         }
+
+        
     }
 }

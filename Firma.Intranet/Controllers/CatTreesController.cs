@@ -10,17 +10,12 @@ using Firma.Data.Data.CMS;
 
 namespace Firma.Intranet.Controllers
 {
-    public class CatTreesController : Controller
+    public class CatTreesController : BaseController
     {
-        private readonly AlmondContext _context;
-
-        public CatTreesController(AlmondContext context)
-        {
-            _context = context;
-        }
+      
 
         // GET: CatTrees
-        public async Task<IActionResult> Index()
+        public override async Task<IActionResult> Index()
         {
               return _context.CatTree != null ? 
                           View(await _context.CatTree.ToListAsync()) :
@@ -45,11 +40,6 @@ namespace Firma.Intranet.Controllers
             return View(catTree);
         }
 
-        // GET: CatTrees/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
 
         // POST: CatTrees/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -119,7 +109,7 @@ namespace Firma.Intranet.Controllers
         }
 
         // GET: CatTrees/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public override async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.CatTree == null)
             {
@@ -158,6 +148,10 @@ namespace Firma.Intranet.Controllers
         private bool CatTreeExists(int id)
         {
           return (_context.CatTree?.Any(e => e.DrapakId == id)).GetValueOrDefault();
+        }
+
+        public CatTreesController(AlmondContext context) : base(context)
+        {
         }
     }
 }

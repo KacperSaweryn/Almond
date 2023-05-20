@@ -10,17 +10,12 @@ using Firma.Data.Data.CMS;
 
 namespace Firma.Intranet.Controllers
 {
-    public class CatsController : Controller
+    public class CatsController : BaseController
     {
-        private readonly AlmondContext _context;
-
-        public CatsController(AlmondContext context)
-        {
-            _context = context;
-        }
+       
 
         // GET: Cats
-        public async Task<IActionResult> Index()
+        public override async Task<IActionResult> Index()
         {
               return _context.Cat != null ? 
                           View(await _context.Cat.ToListAsync()) :
@@ -28,7 +23,7 @@ namespace Firma.Intranet.Controllers
         }
 
         // GET: Cats/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public override async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Cat == null)
             {
@@ -45,11 +40,6 @@ namespace Firma.Intranet.Controllers
             return View(cat);
         }
 
-        // GET: Cats/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
 
         // POST: Cats/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -68,7 +58,7 @@ namespace Firma.Intranet.Controllers
         }
 
         // GET: Cats/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public override async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Cat == null)
             {
@@ -119,7 +109,7 @@ namespace Firma.Intranet.Controllers
         }
 
         // GET: Cats/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public override async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Cat == null)
             {
@@ -158,6 +148,10 @@ namespace Firma.Intranet.Controllers
         private bool CatExists(int id)
         {
           return (_context.Cat?.Any(e => e.KotId == id)).GetValueOrDefault();
+        }
+
+        public CatsController(AlmondContext context) : base(context)
+        {
         }
     }
 }

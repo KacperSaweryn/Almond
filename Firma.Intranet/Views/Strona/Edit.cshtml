@@ -28,20 +28,30 @@
                 <input asp-for="Tresc" class="form-control" />
                 <span asp-validation-for="Tresc" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @* <div class="form-group"> *@
+            @*     <label asp-for="FotoUrl" class="control-label"></label> *@
+            @*     <input asp-for="FotoUrl" class="form-control" /> *@
+            @*     <span asp-validation-for="FotoUrl" class="text-danger"></span> *@
+            @* </div> *@
+            <div class="form-group" novalidate>
                 <label asp-for="FotoUrl" class="control-label"></label>
-                <input asp-for="FotoUrl" class="form-control" />
-                <span asp-validation-for="FotoUrl" class="text-danger"></span>
+                <input type="file" asp-for="FotoUrl" class="form-control" accept="image/*" />
+                <span asp-validation-for="FotoUrl" class="text-danger" asp-validation-summary></span>
             </div>
             <div class="form-group">
                 <label asp-for="AltText" class="control-label"></label>
                 <input asp-for="AltText" class="form-control" />
                 <span asp-validation-for="AltText" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="FotoUrlDown" class="control-label"></label>
-                <input asp-for="FotoUrlDown" class="form-control" />
-                <span asp-validation-for="FotoUrlDown" class="text-danger"></span>
+            @* <div class="form-group"> *@
+            @*     <label asp-for="FotoUrlDown" class="control-label"></label> *@
+            @*     <input asp-for="FotoUrlDown" class="form-control" /> *@
+            @*     <span asp-validation-for="FotoUrlDown" class="text-danger"></span> *@
+            @* </div> *@
+            <div class="form-group" novalidate>
+                <label asp-for="FotoUrl" class="control-label"></label>
+                <input type="file" asp-for="FotoUrl" class="form-control" accept="image/*" />
+                <span asp-validation-for="FotoUrl" class="text-danger" asp-validation-summary></span>
             </div>
             <div class="form-group">
                 <label asp-for="AltTextDown" class="control-label"></label>

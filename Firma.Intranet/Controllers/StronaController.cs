@@ -11,23 +11,20 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Firma.Intranet.Controllers
 {
-    public class StronaController : Controller
+    public class StronaController : BaseController
     {
-        private readonly AlmondContext _context;
-
-        public StronaController(AlmondContext context)
+        public StronaController(AlmondContext context) : base(context)
         {
-            _context = context;
         }
 
         // GET: Strona
-        public async Task<IActionResult> Index()
+        public override async Task<IActionResult> Index()
         {
             return View(await _context.Page.ToListAsync());
         }
 
         // GET: Strona/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public override async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Page == null)
             {
@@ -44,11 +41,7 @@ namespace Firma.Intranet.Controllers
             return View(strona);
         }
 
-        // GET: Strona/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
+      
 
         // POST: Strona/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -69,7 +62,7 @@ namespace Firma.Intranet.Controllers
         }
 
         // GET: Strona/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public override async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Page == null)
             {
@@ -124,7 +117,7 @@ namespace Firma.Intranet.Controllers
         }
 
         // GET: Strona/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public override async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Page == null)
             {

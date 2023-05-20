@@ -11,23 +11,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Firma.Intranet.Controllers
 {
-    public class AktualnoscController : Controller
+    public class AktualnoscController : BaseController
     {
-        private readonly AlmondContext _context;
-
-        public AktualnoscController(AlmondContext context)
-        {
-            _context = context;
-        }
-
         // GET: Aktualnosc
-        public async Task<IActionResult> Index()
+        public override async Task<IActionResult> Index()
         {
             return View(await _context.News.ToListAsync());
         }
 
         // GET: Aktualnosc/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public override async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.News == null)
             {
@@ -44,11 +37,6 @@ namespace Firma.Intranet.Controllers
             return View(aktualnosc);
         }
 
-        // GET: Aktualnosc/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
 
         // POST: Aktualnosc/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -56,7 +44,8 @@ namespace Firma.Intranet.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(
-            [Bind("IdAktualnosci,LinkTytul,Tytul,Tresc,Rozwiniecie,FotoUrl,AltText,Icon,Pozycja")] News aktualnosc)
+            [Bind("IdAktualnosci,LinkTytul,Tytul,Tresc,Rozwiniecie,FotoUrl,AltText,Icon,Pozycja")]
+            News aktualnosc)
         {
             if (ModelState.IsValid)
             {
@@ -69,7 +58,7 @@ namespace Firma.Intranet.Controllers
         }
 
         // GET: Aktualnosc/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public override async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.News == null)
             {
@@ -91,7 +80,8 @@ namespace Firma.Intranet.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id,
-            [Bind("IdAktualnosci,LinkTytul,Tytul,Tresc,Rozwiniecie,FotoUrl,AltText,Icon,Pozycja")] News aktualnosc)
+            [Bind("IdAktualnosci,LinkTytul,Tytul,Tresc,Rozwiniecie,FotoUrl,AltText,Icon,Pozycja")]
+            News aktualnosc)
         {
             if (id != aktualnosc.IdAktualnosci)
             {
@@ -124,7 +114,7 @@ namespace Firma.Intranet.Controllers
         }
 
         // GET: Aktualnosc/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public override async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.News == null)
             {
@@ -164,6 +154,10 @@ namespace Firma.Intranet.Controllers
         private bool AktualnoscExists(int id)
         {
             return _context.News.Any(e => e.IdAktualnosci == id);
+        }
+
+        public AktualnoscController(AlmondContext context) : base(context)
+        {
         }
     }
 }

@@ -12,30 +12,30 @@
 <table class="table">
     <thead>
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.LinkTytul)
-        </th>
+        @* <th> *@
+        @*     @Html.DisplayNameFor(model => model.LinkTytul) *@
+        @* </th> *@
         <th>
             @Html.DisplayNameFor(model => model.Tytul)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tresc)
-        </th>
+        @* <th> *@
+        @*     @Html.DisplayNameFor(model => model.Tresc) *@
+        @* </th> *@
         <th>
             @Html.DisplayNameFor(model => model.FotoUrl)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AltText)
-        </th>
+        @* <th> *@
+        @*     @Html.DisplayNameFor(model => model.AltText) *@
+        @* </th> *@
         <th>
             @Html.DisplayNameFor(model => model.FotoUrlDown)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AltTextDown)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Pozycja)
-        </th>
+        @* <th> *@
+        @*     @Html.DisplayNameFor(model => model.AltTextDown) *@
+        @* </th> *@
+        @* <th> *@
+        @*     @Html.DisplayNameFor(model => model.Pozycja) *@
+        @* </th> *@
         <th></th>
     </tr>
     </thead>
@@ -43,30 +43,30 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.LinkTytul)
-            </td>
+            @* <td> *@
+            @*     @Html.DisplayFor(modelItem => item.LinkTytul) *@
+            @* </td> *@
             <td>
                 @Html.DisplayFor(modelItem => item.Tytul)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tresc)
-            </td>
+            @* <td> *@
+            @*     @Html.DisplayFor(modelItem => item.Tresc) *@
+            @* </td> *@
             <td>
                 @Html.DisplayFor(modelItem => item.FotoUrl)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AltText)
-            </td>
+            @* <td> *@
+            @*     @Html.DisplayFor(modelItem => item.AltText) *@
+            @* </td> *@
             <td>
                 @Html.DisplayFor(modelItem => item.FotoUrlDown)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AltTextDown)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pozycja)
-            </td>
+            @* <td> *@
+            @*     @Html.DisplayFor(modelItem => item.AltTextDown) *@
+            @* </td> *@
+            @* <td> *@
+            @*     @Html.DisplayFor(modelItem => item.Pozycja) *@
+            @* </td> *@
             <td>
                 <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.IdStrony">Edycja</a>
                 <a asp-action="Details" class="btn btn-info" asp-route-id="@item.IdStrony">Szczegóły</a>

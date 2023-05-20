@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Firma.Data.Data.Sklep
 {
-    public class Item
+    public class Item 
     {
         [Key]
         public int ItemId { get; set; }

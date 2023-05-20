@@ -10,17 +10,12 @@ using Firma.Data.Data.Sklep;
 
 namespace Firma.Intranet.Controllers
 {
-    public class ItemTypesController : Controller
+    public class ItemTypesController : BaseController
     {
-        private readonly AlmondContext _context;
-
-        public ItemTypesController(AlmondContext context)
-        {
-            _context = context;
-        }
+      
 
         // GET: ItemTypes
-        public async Task<IActionResult> Index()
+        public override async Task<IActionResult> Index()
         {
               return _context.ItemType != null ? 
                           View(await _context.ItemType.ToListAsync()) :
@@ -28,7 +23,7 @@ namespace Firma.Intranet.Controllers
         }
 
         // GET: ItemTypes/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public override async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.ItemType == null)
             {
@@ -45,11 +40,6 @@ namespace Firma.Intranet.Controllers
             return View(itemType);
         }
 
-        // GET: ItemTypes/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
 
         // POST: ItemTypes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -68,7 +58,7 @@ namespace Firma.Intranet.Controllers
         }
 
         // GET: ItemTypes/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public override async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.ItemType == null)
             {
@@ -119,7 +109,7 @@ namespace Firma.Intranet.Controllers
         }
 
         // GET: ItemTypes/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public override async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.ItemType == null)
             {
@@ -158,6 +148,10 @@ namespace Firma.Intranet.Controllers
         private bool ItemTypeExists(int id)
         {
           return (_context.ItemType?.Any(e => e.ItemTypeId == id)).GetValueOrDefault();
+        }
+
+        public ItemTypesController(AlmondContext context) : base(context)
+        {
         }
     }
 }
