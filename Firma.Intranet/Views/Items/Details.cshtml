@@ -1,60 +1,57 @@
 ﻿@model Firma.Data.Data.Sklep.Item
-
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Szczegóły";
 }
 
-<h1>Details</h1>
 
 <div>
-    <h4>Item</h4>
-    <hr />
+    <h4>Towar</h4>
+    <hr/>
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.InfoGlowne)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.InfoGlowne)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Opis)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Opis)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Cena)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Cena)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Photo)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Photo)
+        <dd class="col-sm-10">
+            <img src="data:image;base64,@System.Convert.ToBase64String(Model.Photo)" class="img-thumbnail" alt="Item Photo"/>
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsActive)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsActive)
-        </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Pozycja)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Pozycja)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ItemType)
+        <dt class="col-sm-2">
+            Rodzaj
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ItemType.Nazwa)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.ItemId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <br/>
+    <a asp-action="Edit" class="btn btn-warning" asp-route-id="@Model?.ItemId">Edycja</a>
+
+    <div>
+        <br/>
+        <a asp-action="Index" class="btn btn-secondary">Powrót</a>
+    </div>
 </div>

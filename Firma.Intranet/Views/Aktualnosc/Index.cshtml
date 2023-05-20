@@ -6,6 +6,21 @@
 
 <h1>Aktualności</h1>
 
+@using (Html.BeginForm("Index", "Aktualnosc", FormMethod.Get))
+{
+    <div class="form-group">
+        <label for="searchTytulNews">Wyszukaj po tytule:</label>
+        <input type="text" class="form-control" name="searchTytulNews" id="searchTytulNews" value="@ViewBag.CurrentFilterTytulNews">
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="searchTrescNews">Wyszukaj po treści:</label>
+        <input type="text" class="form-control" name="searchTrescNews" id="searchTrescNews" value="@ViewBag.CurrentFilterTrescNews">
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Wyszukaj</button>
+}
+<br />
 <p>
     <a asp-action="Create" class="btn btn-primary">Nowa</a>
 </p>
@@ -21,21 +36,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Tresc)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Rozwiniecie)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FotoUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AltText)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Icon)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Pozycja)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -50,21 +50,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Tresc)
-            </td>
-            <td>
-                    @Html.DisplayFor(modelItem => item.Rozwiniecie)
-            </td>
-            <td>
-                    @Html.DisplayFor(modelItem => item.FotoUrl)
-            </td>
-            <td>
-                    @Html.DisplayFor(modelItem => item.AltText)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Icon)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pozycja)
             </td>
             <td>
                     <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.IdAktualnosci">Edycja</a>  

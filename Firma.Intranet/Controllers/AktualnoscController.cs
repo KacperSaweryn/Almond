@@ -11,16 +11,42 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Firma.Intranet.Controllers
 {
-    public class AktualnoscController : BaseController
+    public class AktualnoscController : Controller
     {
-        // GET: Aktualnosc
-        public override async Task<IActionResult> Index()
+
+        public readonly AlmondContext _context;
+
+        public AktualnoscController(AlmondContext context)
         {
-            return View(await _context.News.ToListAsync());
+            _context = context;
+        }
+
+
+        // GET: Aktualnosc
+        public  async Task<IActionResult> Index(string searchTytulNews, string searchTrescNews)
+        {
+            var news = from n in _context.News
+                select n;
+
+            if (!String.IsNullOrEmpty(searchTytulNews))
+            {
+                news = news.Where(p => p.Tytul.Contains(searchTytulNews));
+            }
+
+            if (!String.IsNullOrEmpty(searchTrescNews))
+            {
+                news = news.Where(p => p.Tresc.Contains(searchTrescNews));
+            }
+
+            ViewBag.CurrentFilterTytulNews = searchTytulNews;
+            ViewBag.CurrentFilterTrescNews = searchTrescNews;
+
+
+            return View(await news.ToListAsync());
         }
 
         // GET: Aktualnosc/Details/5
-        public override async Task<IActionResult> Details(int? id)
+        public  async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.News == null)
             {
@@ -58,7 +84,7 @@ namespace Firma.Intranet.Controllers
         }
 
         // GET: Aktualnosc/Edit/5
-        public override async Task<IActionResult> Edit(int? id)
+        public  async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.News == null)
             {
@@ -114,7 +140,7 @@ namespace Firma.Intranet.Controllers
         }
 
         // GET: Aktualnosc/Delete/5
-        public override async Task<IActionResult> Delete(int? id)
+        public  async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.News == null)
             {
@@ -156,8 +182,10 @@ namespace Firma.Intranet.Controllers
             return _context.News.Any(e => e.IdAktualnosci == id);
         }
 
-        public AktualnoscController(AlmondContext context) : base(context)
+        public IActionResult Create()
         {
+            // ReSharper disable once Mvc.ViewNotResolved
+            return View();
         }
     }
 }

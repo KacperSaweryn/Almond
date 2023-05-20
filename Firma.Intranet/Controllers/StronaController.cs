@@ -11,20 +11,47 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Firma.Intranet.Controllers
 {
-    public class StronaController : BaseController
+    public class StronaController : Controller
     {
-        public StronaController(AlmondContext context) : base(context)
+        public readonly AlmondContext _context;
+
+        public StronaController(AlmondContext context)
         {
+            _context = context;
         }
 
+
         // GET: Strona
-        public override async Task<IActionResult> Index()
+        public  async Task<IActionResult> Index(string searchTytul, string searchTresc)
         {
-            return View(await _context.Page.ToListAsync());
+            var pages = from p in _context.Page
+                select p;
+
+            if (!String.IsNullOrEmpty(searchTytul))
+            {
+                pages = pages.Where(p => p.Tytul.Contains(searchTytul));
+            }
+
+            if (!String.IsNullOrEmpty(searchTresc))
+            {
+                pages = pages.Where(p => p.Tresc.Contains(searchTresc));
+            }
+
+            ViewBag.CurrentFilterTytul = searchTytul;
+            ViewBag.CurrentFilterTresc = searchTresc;
+
+            return View(await pages.ToListAsync());
+        }
+    
+
+        public IActionResult Create()
+        {
+            // ReSharper disable once Mvc.ViewNotResolved
+            return View();
         }
 
         // GET: Strona/Details/5
-        public override async Task<IActionResult> Details(int? id)
+        public  async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Page == null)
             {
@@ -62,7 +89,7 @@ namespace Firma.Intranet.Controllers
         }
 
         // GET: Strona/Edit/5
-        public override async Task<IActionResult> Edit(int? id)
+        public  async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Page == null)
             {
@@ -117,7 +144,7 @@ namespace Firma.Intranet.Controllers
         }
 
         // GET: Strona/Delete/5
-        public override async Task<IActionResult> Delete(int? id)
+        public  async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Page == null)
             {

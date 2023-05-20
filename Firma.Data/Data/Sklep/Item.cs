@@ -11,9 +11,9 @@ namespace Firma.Data.Data.Sklep
         [Key]
         public int ItemId { get; set; }
 
-        [Display(Name = "Kolor")]
-        [MaxLength(30, ErrorMessage = "Kolor może zawierać max 30 znaków")]
-        [Required(ErrorMessage = "Kolor jest wymagany")]
+        [Display(Name = "Informacja Główna")]
+        [MaxLength(30, ErrorMessage = "Informacja może zawierać max 30 znaków")]
+        [Required(ErrorMessage = "Informacja jest wymagana")]
         public string InfoGlowne { get; set; }
 
         [Display(Name = "Opis")]

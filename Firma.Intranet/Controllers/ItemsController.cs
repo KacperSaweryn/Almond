@@ -10,21 +10,57 @@ using Firma.Data.Data.Sklep;
 
 namespace Firma.Intranet.Controllers
 {
-    public class ItemsController : BaseController
+    public class ItemsController : Controller
     {
 
-        public ItemsController(AlmondContext context) : base(context)
+        public readonly AlmondContext _context;
+
+        public ItemsController(AlmondContext context)
         {
+            _context = context;
         }
         // GET: Items
-        public override async Task<IActionResult> Index()
+
+        public async Task<IActionResult> Index(string searchInfoGlowne, string searchOpis, string searchCena, string searchNazwa)
         {
-            var almondContext = _context.Item.Include(i => i.ItemType);
-            return View(await almondContext.ToListAsync());
+            IQueryable<Item> items = _context.Item.Include(i => i.ItemType);
+
+            if (!String.IsNullOrEmpty(searchInfoGlowne))
+            {
+                items = items.Where(p => p.InfoGlowne.Contains(searchInfoGlowne));
+            }
+
+            if (!String.IsNullOrEmpty(searchOpis))
+            {
+                items = items.Where(p => p.Opis.Contains(searchOpis));
+            }
+
+            if (!String.IsNullOrEmpty(searchCena))
+            {
+                // Assuming the Cena property is of type decimal or double
+                var parsedCena = decimal.TryParse(searchCena, out var cena) ? cena : 0;
+                items = items.Where(p => p.Cena == parsedCena);
+            }
+            if (!String.IsNullOrEmpty(searchNazwa))
+            {
+                items = items.Where(i => i.ItemType.Nazwa.Contains(searchNazwa));
+            }
+
+            items = items.OrderByDescending(i => i.ItemId);
+
+            ViewBag.CurrentFilterInfoGlowne = searchInfoGlowne;
+            ViewBag.CurrentFilterOpis = searchOpis;
+            ViewBag.CurrentFilterCena = searchCena;
+            ViewBag.CurrentFilterNazwa = searchNazwa;
+
+            return View(await items.ToListAsync());
         }
 
+
+     
+
         // GET: Items/Details/5
-        public override async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Item == null)
             {
@@ -43,7 +79,7 @@ namespace Firma.Intranet.Controllers
         }
 
         // GET: Items/Create
-        public override IActionResult Create()
+        public  IActionResult Create()
         {
             ViewData["ItemTypeId"] = new SelectList(_context.ItemType, "ItemTypeId", "Nazwa");
             return View();
@@ -76,23 +112,25 @@ namespace Firma.Intranet.Controllers
         }
 
         // GET: Items/Edit/5
-        public override async Task<IActionResult> Edit(int? id)
+        public  async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Item == null)
             {
                 return NotFound();
             }
-
+        
             var item = await _context.Item.FindAsync(id);
             if (item == null)
             {
                 return NotFound();
             }
-
+        
             ViewData["ItemTypeId"] = new SelectList(_context.ItemType, "ItemTypeId", "Nazwa", item.ItemTypeId);
             return View(item);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id,
             [Bind("ItemId,InfoGlowne,Opis,Cena,IsActive,ItemTypeId,Pozycja")] Item item, IFormFile photo)
         {
@@ -137,45 +175,45 @@ namespace Firma.Intranet.Controllers
         }
 
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id,
-            [Bind("ItemId,InfoGlowne,Opis,Cena,Photo,IsActive,ItemTypeId,Pozycja")]
-            Item item)
-        {
-            if (id != item.ItemId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(item);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ItemExists(item.ItemId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-
-                return RedirectToAction(nameof(Index));
-            }
-
-            ViewData["ItemTypeId"] = new SelectList(_context.ItemType, "ItemTypeId", "Nazwa", item.ItemTypeId);
-            return View(item);
-        }
+        // [HttpPost]
+        // [ValidateAntiForgeryToken]
+        // public async Task<IActionResult> Edit(int id,
+        //     [Bind("ItemId,InfoGlowne,Opis,Cena,Photo,IsActive,ItemTypeId,Pozycja")]
+        //     Item item)
+        // {
+        //     if (id != item.ItemId)
+        //     {
+        //         return NotFound();
+        //     }
+        //
+        //     if (ModelState.IsValid)
+        //     {
+        //         try
+        //         {
+        //             _context.Update(item);
+        //             await _context.SaveChangesAsync();
+        //         }
+        //         catch (DbUpdateConcurrencyException)
+        //         {
+        //             if (!ItemExists(item.ItemId))
+        //             {
+        //                 return NotFound();
+        //             }
+        //             else
+        //             {
+        //                 throw;
+        //             }
+        //         }
+        //
+        //         return RedirectToAction(nameof(Index));
+        //     }
+        //
+        //     ViewData["ItemTypeId"] = new SelectList(_context.ItemType, "ItemTypeId", "Nazwa", item.ItemTypeId);
+        //     return View(item);
+        // }
 
         // GET: Items/Delete/5
-        public override async Task<IActionResult> Delete(int? id)
+        public  async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Item == null)
             {

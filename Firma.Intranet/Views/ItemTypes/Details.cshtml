@@ -1,13 +1,13 @@
 ﻿@model Firma.Data.Data.Sklep.ItemType
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Szczegóły";
 }
 
-<h1>Details</h1>
+<h1>Szczegóły</h1>
 
 <div>
-    <h4>ItemType</h4>
+    <h4>Typ</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -31,6 +31,11 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.ItemTypeId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <br />
+    <a asp-action="Edit" class="btn btn-warning" asp-route-id="@Model?.ItemTypeId">Edycja</a>
+
+    <div>
+        <br />
+        <a asp-action="Index" class="btn btn-secondary">Powrót</a>
+    </div>
 </div>

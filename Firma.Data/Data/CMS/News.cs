@@ -22,7 +22,7 @@ namespace Firma.Data.Data.CMS
         [Display(Name = "Tytuł aktualnosci")]
         public string Tytul { get; set; }
 
-        [Display(Name = "Rozwiniecie")]
+        [Display(Name = "Tresc")]
         [Column(TypeName = "nvarchar(MAX)")]
         public string Tresc { get; set; }
 
