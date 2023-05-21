@@ -22,13 +22,11 @@
 
 
 <footer class="page-footer grey">
-    @* <div class="container"> *@
+    
     <div class="footer-copyright">
         <div class="container grey-text text-lighten-4">
-            @* Made by <a class="grey-text text-lighten-4" href="https://www.wsb-nlu.edu.pl/">Kacper z WSB-NLU</a> *@
         </div>
     </div>
-    @* </div> *@
 </footer>
 
 
@@ -58,5 +56,66 @@
             $('.modal').modal();
         });
     </script>
+
+
+    <script>
+        $(document).ready(function () {
+            var $cards = $('.card-container .card');
+
+            $('#search').on('keyup', function () {
+                var value = $(this).val().toLowerCase();
+                $cards.each(function () {
+                    var cardText = $(this).find('.card-title, .light').text().toLowerCase();
+                    var isMatch = cardText.indexOf(value) > -1;
+
+                    if (isMatch) {
+                        $(this).removeClass('hidden-card');
+                    } else {
+                        $(this).addClass('hidden-card');
+                    }
+                });
+
+                rearrangeCards();
+            });
+
+            $('#search').on('input', function () {
+                var value = $(this).val().trim();
+                if (value === '') {
+                    $cards.removeClass('hidden-card');
+                    rearrangeCards();
+                }
+            });
+
+            function rearrangeCards() {
+                var $visibleCards = $('.card-container .card:not(.hidden-card)');
+                var numVisibleCards = $visibleCards.length;
+                var numRows = Math.ceil(numVisibleCards / 3);
+
+                $('.card-container').empty();
+
+                for (var row = 0; row < numRows; row++) {
+                    var $cardRow = $('<div class="row"></div>');
+
+                    for (var col = 0; col < 3; col++) {
+                        var cardIndex = row * 3 + col;
+                        var $card = $visibleCards.eq(cardIndex);
+
+                        if ($card.length) {
+                            var $col = $('<div class="col s12 m6 l4"></div>');
+                            $col.append($card);
+                            $cardRow.append($col);
+                        }
+                    }
+
+                    $('.card-container').append($cardRow);
+                }
+            }
+            $('#refresh-btn').click(function () {
+                location.reload();
+            });
+        });
+    </script>
+
+
 </body>
 </html>
