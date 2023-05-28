@@ -10,17 +10,22 @@ using Firma.Data.Data.Sklep;
 
 namespace Firma.Intranet.Controllers
 {
-    public class ItemTypesController : BaseController
+    public class ItemTypesController : BaseController<ItemType>
     {
       
 
         // GET: ItemTypes
-        public override async Task<IActionResult> Index()
+        public override Task<List<ItemType>> GetEntityList()
         {
-              return _context.ItemType != null ? 
-                          View(await _context.ItemType.ToListAsync()) :
-                          Problem("Entity set 'AlmondContext.ItemType'  is null.");
+            return _context.ItemType.ToListAsync();
         }
+
+        // public override async Task<IActionResult> Index()
+        // {
+        //       // return _context.ItemType != null ? 
+        //       //             View(await _context.ItemType.ToListAsync()) :
+        //       //             Problem("Entity set 'AlmondContext.ItemType'  is null.");
+        // }
 
         // GET: ItemTypes/Details/5
         public override async Task<IActionResult> Details(int? id)

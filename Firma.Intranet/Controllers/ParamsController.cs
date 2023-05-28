@@ -10,11 +10,16 @@ using Firma.Data.Data.CMS;
 
 namespace Firma.Intranet.Controllers
 {
-    public class ParamsController : BaseController
+    public class ParamsController : BaseController<Params>
     {
       
 
         // GET: Params
+        public override Task<List<Params>> GetEntityList()
+        {
+            throw new NotImplementedException();
+        }
+
         public override async Task<IActionResult> Index()
         {
               return _context.Params != null ? 

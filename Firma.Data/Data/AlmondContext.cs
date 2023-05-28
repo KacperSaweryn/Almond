@@ -21,8 +21,7 @@ namespace Firma.Data.Data
         public DbSet<News> News { get; set; }
 
         public DbSet<Params>? Params { get; set; }
-        public DbSet<Cat>? Cat { get; set; }
-        public DbSet<CatTree>? CatTree { get; set; }
+    
         public DbSet<Item>? Item { get; set; }
         public DbSet<ItemType>? ItemType { get; set; }
     

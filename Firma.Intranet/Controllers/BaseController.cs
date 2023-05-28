@@ -5,15 +5,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Firma.Intranet.Controllers
 {
-    public class BaseController : Controller
+    public abstract class BaseController<T> : Controller
     {
         public readonly AlmondContext _context;
 
-        public BaseController(AlmondContext context)
+        protected BaseController(AlmondContext context)
         {
             _context = context;
         }
 
+        public abstract Task<List<T>> GetEntityList();
         public virtual IActionResult Create()
         {
             // ReSharper disable once Mvc.ViewNotResolved
@@ -23,7 +24,7 @@ namespace Firma.Intranet.Controllers
         public virtual async Task<IActionResult> Index()
         {
             // ReSharper disable once Mvc.ViewNotResolved
-            return View();
+            return View(await GetEntityList());
         }
 
         public virtual async Task<IActionResult> Edit(int? id)
