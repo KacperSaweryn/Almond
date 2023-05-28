@@ -37,7 +37,6 @@ namespace Firma.Intranet.Controllers
 
             if (!String.IsNullOrEmpty(searchCena))
             {
-                // Assuming the Cena property is of type decimal or double
                 var parsedCena = decimal.TryParse(searchCena, out var cena) ? cena : 0;
                 items = items.Where(p => p.Cena == parsedCena);
             }
@@ -174,44 +173,7 @@ namespace Firma.Intranet.Controllers
             return View(item);
         }
 
-
-        // [HttpPost]
-        // [ValidateAntiForgeryToken]
-        // public async Task<IActionResult> Edit(int id,
-        //     [Bind("ItemId,InfoGlowne,Opis,Cena,Photo,IsActive,ItemTypeId,Pozycja")]
-        //     Item item)
-        // {
-        //     if (id != item.ItemId)
-        //     {
-        //         return NotFound();
-        //     }
-        //
-        //     if (ModelState.IsValid)
-        //     {
-        //         try
-        //         {
-        //             _context.Update(item);
-        //             await _context.SaveChangesAsync();
-        //         }
-        //         catch (DbUpdateConcurrencyException)
-        //         {
-        //             if (!ItemExists(item.ItemId))
-        //             {
-        //                 return NotFound();
-        //             }
-        //             else
-        //             {
-        //                 throw;
-        //             }
-        //         }
-        //
-        //         return RedirectToAction(nameof(Index));
-        //     }
-        //
-        //     ViewData["ItemTypeId"] = new SelectList(_context.ItemType, "ItemTypeId", "Nazwa", item.ItemTypeId);
-        //     return View(item);
-        // }
-
+        
         // GET: Items/Delete/5
         public  async Task<IActionResult> Delete(int? id)
         {
