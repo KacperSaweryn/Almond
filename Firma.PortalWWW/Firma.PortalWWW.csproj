@@ -20,4 +20,8 @@
     <ProjectReference Include="..\Firma.Data\Firma.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Cart\" />
+  </ItemGroup>
+
 </Project>

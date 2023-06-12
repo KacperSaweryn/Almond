@@ -15,7 +15,6 @@ namespace Firma.Data.Data
             : base(options)
         {
         }
-
         public DbSet<Page> Page { get; set; } = default!;
 
         public DbSet<News> News { get; set; }
@@ -24,6 +23,8 @@ namespace Firma.Data.Data
     
         public DbSet<Item>? Item { get; set; }
         public DbSet<ItemType>? ItemType { get; set; }
+        public DbSet<CartElement>? CartElement { get; set; }
+
     
     }
 }

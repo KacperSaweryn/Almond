@@ -31,9 +31,6 @@ namespace Firma.Data.Data.CMS
         [Column(TypeName = "nvarchar(MAX)")]
         public string FotoUrl { get; set; }
 
-        // [AllowNull]
-        // [Display(Name = "Górne zdjęcie na stronę")]
-        // public byte[] FotoUrl { get; set; }
 
         [AllowNull]
         [Display(Name = "Tekst alternatywny")]
@@ -45,9 +42,6 @@ namespace Firma.Data.Data.CMS
         [Display(Name = "Dolne zdjęcie na stronę")]
         [Column(TypeName = "nvarchar(MAX)")]
         public string FotoUrlDown { get; set; }
-        // [AllowNull]
-        // [Display(Name = "Dolne zdjęcie na stronę")]
-        // public byte[] FotoUrlDown { get; set; }
 
         [AllowNull]
         [Display(Name = "Tekst alternatywny drugiego zdjecia")]

@@ -19,7 +19,6 @@ namespace Firma.Data.Data.CMS
         [Display(Name = "Nazwa odnośnika")]
         public string Nazwa { get; set; }
 
-
         [Display(Name = "Treść")]
         [Column(TypeName = "nvarchar(MAX)")]
         public string Tresc { get; set; }

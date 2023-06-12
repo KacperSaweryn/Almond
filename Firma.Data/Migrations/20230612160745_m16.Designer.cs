@@ -4,6 +4,7 @@ using Firma.Data.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Firma.Data.Migrations
 {
     [DbContext(typeof(AlmondContext))]
-    partial class AlmondContextModelSnapshot : ModelSnapshot
+    [Migration("20230612160745_m16")]
+    partial class m16
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -148,13 +150,13 @@ namespace Firma.Data.Migrations
                     b.ToTable("Params");
                 });
 
-            modelBuilder.Entity("Firma.Data.Data.Sklep.CartElement", b =>
+            modelBuilder.Entity("Firma.Data.Data.Sklep.BasketElement", b =>
                 {
-                    b.Property<int>("CartElementId")
+                    b.Property<int>("BasketElementId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartElementId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BasketElementId"), 1L, 1);
 
                     b.Property<DateTime>("CreateDateTime")
                         .HasColumnType("datetime2");
@@ -169,11 +171,11 @@ namespace Firma.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CartElementId");
+                    b.HasKey("BasketElementId");
 
                     b.HasIndex("ItemId");
 
-                    b.ToTable("CartElement");
+                    b.ToTable("BasketElement");
                 });
 
             modelBuilder.Entity("Firma.Data.Data.Sklep.Item", b =>
@@ -241,7 +243,7 @@ namespace Firma.Data.Migrations
                     b.ToTable("ItemType");
                 });
 
-            modelBuilder.Entity("Firma.Data.Data.Sklep.CartElement", b =>
+            modelBuilder.Entity("Firma.Data.Data.Sklep.BasketElement", b =>
                 {
                     b.HasOne("Firma.Data.Data.Sklep.Item", "Item")
                         .WithMany()

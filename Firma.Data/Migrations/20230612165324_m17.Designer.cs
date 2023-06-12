@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Firma.Data.Migrations
 {
     [DbContext(typeof(AlmondContext))]
-    [Migration("20230520090011_m14_photoForPage")]
-    partial class m14_photoForPage
+    [Migration("20230612165324_m17")]
+    partial class m17
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,85 +23,6 @@ namespace Firma.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("Firma.Data.Data.CMS.Cat", b =>
-                {
-                    b.Property<int>("KotId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("KotId"), 1L, 1);
-
-                    b.Property<decimal>("Cena")
-                        .HasColumnType("money");
-
-                    b.Property<string>("FotoUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Imie")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Kolor")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<string>("Opis")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(MAX)");
-
-                    b.Property<int>("Pozycja")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Rasa")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.HasKey("KotId");
-
-                    b.ToTable("Cat");
-                });
-
-            modelBuilder.Entity("Firma.Data.Data.CMS.CatTree", b =>
-                {
-                    b.Property<int>("DrapakId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DrapakId"), 1L, 1);
-
-                    b.Property<decimal>("Cena")
-                        .HasColumnType("money");
-
-                    b.Property<string>("FotoUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Kolor")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<string>("Opis")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(MAX)");
-
-                    b.Property<int>("Pozycja")
-                        .HasColumnType("int");
-
-                    b.HasKey("DrapakId");
-
-                    b.ToTable("CatTree");
-                });
 
             modelBuilder.Entity("Firma.Data.Data.CMS.News", b =>
                 {
@@ -169,13 +90,13 @@ namespace Firma.Data.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
 
-                    b.Property<byte[]>("FotoUrl")
+                    b.Property<string>("FotoUrl")
                         .IsRequired()
-                        .HasColumnType("varbinary(max)");
+                        .HasColumnType("nvarchar(MAX)");
 
-                    b.Property<byte[]>("FotoUrlDown")
+                    b.Property<string>("FotoUrlDown")
                         .IsRequired()
-                        .HasColumnType("varbinary(max)");
+                        .HasColumnType("nvarchar(MAX)");
 
                     b.Property<string>("LinkTytul")
                         .IsRequired()
@@ -227,6 +148,34 @@ namespace Firma.Data.Migrations
                     b.HasKey("IdParametr");
 
                     b.ToTable("Params");
+                });
+
+            modelBuilder.Entity("Firma.Data.Data.Sklep.CartElement", b =>
+                {
+                    b.Property<int>("CartElementId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartElementId"), 1L, 1);
+
+                    b.Property<DateTime>("CreateDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ItemId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SessionId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CartElementId");
+
+                    b.HasIndex("ItemId");
+
+                    b.ToTable("CartElement");
                 });
 
             modelBuilder.Entity("Firma.Data.Data.Sklep.Item", b =>
@@ -292,6 +241,17 @@ namespace Firma.Data.Migrations
                     b.HasKey("ItemTypeId");
 
                     b.ToTable("ItemType");
+                });
+
+            modelBuilder.Entity("Firma.Data.Data.Sklep.CartElement", b =>
+                {
+                    b.HasOne("Firma.Data.Data.Sklep.Item", "Item")
+                        .WithMany()
+                        .HasForeignKey("ItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Item");
                 });
 
             modelBuilder.Entity("Firma.Data.Data.Sklep.Item", b =>
