@@ -1,7 +1,5 @@
 ﻿using Firma.Data.Data;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
-using Microsoft.EntityFrameworkCore;
 
 namespace Firma.Intranet.Controllers
 {
@@ -15,12 +13,17 @@ namespace Firma.Intranet.Controllers
         }
 
         public abstract Task<List<T>> GetEntityList();
-        public virtual IActionResult Create()
+        public  virtual async Task<IActionResult> Create()
         {
+           // await SetSelectList();
             // ReSharper disable once Mvc.ViewNotResolved
             return View();
         }
-
+        public virtual Task SetSelectList()
+        {
+            //null bo moze nie miec selectListy
+            return null;
+        }
         public virtual async Task<IActionResult> Index()
         {
             // ReSharper disable once Mvc.ViewNotResolved

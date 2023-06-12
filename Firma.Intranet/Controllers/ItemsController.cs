@@ -15,6 +15,7 @@ namespace Firma.Intranet.Controllers
 
         public readonly AlmondContext _context;
 
+     
         public ItemsController(AlmondContext context)
         {
             _context = context;
@@ -78,6 +79,7 @@ namespace Firma.Intranet.Controllers
         }
 
         // GET: Items/Create
+
         public  IActionResult Create()
         {
             ViewData["ItemTypeId"] = new SelectList(_context.ItemType, "ItemTypeId", "Nazwa");
@@ -218,6 +220,7 @@ namespace Firma.Intranet.Controllers
             return (_context.Item?.Any(e => e.ItemId == id)).GetValueOrDefault();
         }
 
-        
+
+       
     }
 }

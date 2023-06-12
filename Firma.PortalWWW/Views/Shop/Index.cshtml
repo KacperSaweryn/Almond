@@ -9,7 +9,7 @@
         <div class="input-field">
             <input id="search" type="text" class="validate">
             <label for="search">Wyszukaj</label>
-            <a href="#" id="refresh-btn" class="waves-effect waves-light btn-small">Wyczyść</a>
+            <a href="#" id="refresh-btn" class="waves-effect waves-light btn-small" style="background-color: #32A287">Wyczyść</a>
         </div>
     </div>
 
@@ -25,7 +25,7 @@
         @foreach (var towar in Model)
         {
             <div class="col s12 m6 l4">
-                <div class="card" style="height: 500px;">
+                <div class="card" style="height: 500px; ">
                     <div class="card-image" style="height: 70%; display: flex; justify-content: center; align-items: flex-start;">
                         @if (towar.Photo != null && towar.Photo.Length > 0)
                         {
@@ -40,7 +40,7 @@
                         <span class="card-title grey-text text-lighten-4">@towar.InfoGlowne</span>
                         <p class="light">Cena: @towar.Cena.ToString("F2") zł</p>
                         <div class="card-action" style="display: flex; justify-content: center;">
-                            <a href="@Url.Action("Details", "Shop", new { id = towar.ItemId })" class="waves-effect waves-light btn">
+                            <a href="@Url.Action("Details", "Shop", new { id = towar.ItemId })" class="waves-effect waves-light btn" style="background-color: #32A287">
                                 Zobacz szczegóły
                                 <i class="material-icons left">info</i>
                             </a>
