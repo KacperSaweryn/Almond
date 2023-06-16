@@ -1,0 +1,39 @@
+﻿@model Firma.PortalWWW.Models.Shop.CartData
+@{
+    ViewData["Title"] = "Koszyk";
+    Layout = "~/Views/Shared/_CartLayout.cshtml";
+}
+
+Koszyk
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>Nazwa</th>
+            <th>Cena</th>
+            <th>Ilosc</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var element in Model.CartElements)
+        {
+            <tr>
+                <td>
+                    @element.Item.InfoGlowne
+                </td>
+                <td>
+                    @element.Item.Cena
+                </td>
+                <td>
+                    @element.Quantity
+                </td>
+            </tr>
+        }
+        <div>
+            Wartosc koszyka @Model.AllDecimal
+        </div>
+
+        </tbody>
+    </table>
+
+</div>

@@ -1,4 +1,6 @@
-﻿@model Firma.Data.Data.Sklep.Item
+﻿@using Microsoft.AspNetCore.Mvc.Rendering
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model Firma.Data.Data.Sklep.Item
 @{
     ViewData["Title"] = "Szczegóły";
     Layout = "~/Views/Shared/_SklepLayout.cshtml";
@@ -22,9 +24,15 @@
                 </div>
                 <div class="col s12 justify-content-center" style="padding-inline: auto">
                     <a href="@Url.Action("Index", "Shop")" class="waves-effect waves-light btn grey darken-1">Powrót do sklepu</a>
-                    <button class="waves-effect waves-light btn " style="background-color: #F78154 ">
-                        <i class="material-icons left">add_shopping_cart</i>
-                        DODAJ DO KOSZYKA
+                    @* <button class="waves-effect waves-light btn " style="background-color: #F78154 "> *@
+                    @*     <i class="material-icons left">add_shopping_cart</i> *@
+                    @*     DODAJ DO KOSZYKA *@
+                    @* </button> *@
+                    <button class="waves-effect waves-light btn" style="background-color: #F78154">
+                        <a asp-action="AddToCart" asp-controller="Cart" asp-route-id="@Model.ItemId">
+                            <i class="material-icons left">add_shopping_cart</i>
+                            DODAJ DO KOSZYKA
+                        </a>
                     </button>
                 </div>
             </div>

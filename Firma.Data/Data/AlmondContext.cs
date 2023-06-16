@@ -24,6 +24,7 @@ namespace Firma.Data.Data
         public DbSet<Item>? Item { get; set; }
         public DbSet<ItemType>? ItemType { get; set; }
         public DbSet<CartElement>? CartElement { get; set; }
+        public DbSet<DefaultTest>? DefaultTest { get; set; }
 
     
     }

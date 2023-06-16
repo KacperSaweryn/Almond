@@ -17,14 +17,14 @@ namespace Firma.PortalWWW.Controllers
 
         public async Task<IActionResult> Index()
         {
-            CartB basketB = new CartB(this._context, this.HttpContext);
+            CartB cartB = new CartB(this._context, this.HttpContext);
             var basketData = new CartData()
             {
-                CartElements = await basketB.GetCartElements(),
-                AllDecimal = await basketB.GetWholePrice()
+                CartElements = await cartB.GetCartElements(),
+                AllDecimal = await cartB.GetWholePrice()
             };
 
-            return View();
+            return View(basketData);
         }
 
         public async Task<IActionResult> AddToCart(int id)
