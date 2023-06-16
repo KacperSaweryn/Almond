@@ -1,48 +1,60 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hodowla i drapaki Almond</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Koszyk</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="~/lib/materialize/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <link href="~/lib/materialize/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="~/lib/materialize/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="~/lib/materialize/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body style="background-color: #f3f3f3;">
-    <nav class="grey-background" role="navigation">
-        @* @await Html.PartialAsync("TypesMenu", (IEnumerable<Firma.Data.Data.Sklep.ItemType>)ViewBag.ItemTypes) *@
-        <a asp-action="Index" asp-controller="Shop">Sklep</a>
-    </nav>
-    <div class="section no-pad-bot" id="index-banner">
-        <div class="container">
-            @RenderBody()
-        </div>
+<nav class="grey-background" role="navigation">
+    <div class="nav-wrapper container">
+        <a id="logo-container" href="https://localhost:7120/" class="brand-logo" style="font-family: -apple-system">Almond</a>
+    </div>
+    
+</nav>
+<br/>
+<div class="container">
+    <a href="@Url.Action("Index", "Shop")" class="waves-effect waves-light btn grey darken-1">
+        <i class="material-icons left">arrow_back</i>
+        Powrót do sklepu
+    </a>
+    <br />
+</div>
+
+<div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+        @RenderBody()
     </div>
 
+</div>
 
-    <footer class="page-footer grey">
 
-        <div class="footer-copyright">
-            <div class="container grey-text text-lighten-4">
-            </div>
+<footer class="page-footer grey">
+
+    <div class="footer-copyright">
+        <div class="container grey-text text-lighten-4">
         </div>
-    </footer>
+    </div>
+</footer>
 
 
-    <!--  Scripts-->
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="~/lib/materialize/js/materialize.js"></script>
-    <script src="~/js/init.js"></script>
-    <script>
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="~/lib/materialize/js/materialize.js"></script>
+<script src="~/js/init.js"></script>
+<script>
         document.addEventListener('DOMContentLoaded', function () {
             var elems = document.querySelectorAll('.parallax');
             var instances = M.Parallax.init(elems, options);
         });
     </script>
 
-    <script>
+<script>
         document.addEventListener('DOMContentLoaded', function () {
             var elems = document.querySelectorAll('.dropdown-trigger');
             var instances = M.Dropdown.init(elems, options);
@@ -51,7 +63,7 @@
         $(document).ready(function () {
             $('.modal').modal();
     </script>
-    <script>
+<script>
         // Initialize Modal
         $(document).ready(function () {
             $('.modal').modal();
@@ -59,7 +71,7 @@
     </script>
 
 
-    <script>
+<script>
         $(document).ready(function () {
             var $cards = $('.card-container .card');
 
@@ -116,7 +128,5 @@
             });
         });
     </script>
-
-
 </body>
 </html>

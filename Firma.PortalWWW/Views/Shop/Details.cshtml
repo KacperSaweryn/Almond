@@ -6,6 +6,12 @@
     Layout = "~/Views/Shared/_SklepLayout.cshtml";
 }
 
+<style>
+    .white-text {
+        color: #fff !important;
+    }
+</style>
+
 <div class="row">
     <div class="col s12 m8 offset-m2">
         <div class="card-panel">
@@ -24,13 +30,9 @@
                 </div>
                 <div class="col s12 justify-content-center" style="padding-inline: auto">
                     <a href="@Url.Action("Index", "Shop")" class="waves-effect waves-light btn grey darken-1">Powrót do sklepu</a>
-                    @* <button class="waves-effect waves-light btn " style="background-color: #F78154 "> *@
-                    @*     <i class="material-icons left">add_shopping_cart</i> *@
-                    @*     DODAJ DO KOSZYKA *@
-                    @* </button> *@
-                    <button class="waves-effect waves-light btn" style="background-color: #F78154">
-                        <a asp-action="AddToCart" asp-controller="Cart" asp-route-id="@Model.ItemId">
-                            <i class="material-icons left">add_shopping_cart</i>
+                    <button class="waves-effect waves-light btn white-text" style="background-color: #F78154">
+                        <a asp-action="AddToCart" asp-controller="Cart" asp-route-id="@Model.ItemId" class="white-text">
+                            <i class="material-icons left white-text">add_shopping_cart</i>
                             DODAJ DO KOSZYKA
                         </a>
                     </button>
