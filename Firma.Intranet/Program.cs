@@ -20,8 +20,6 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews();
 
 
-
-
 builder.Services.Configure<IdentityOptions>(options =>
 {
     // Password settings.
@@ -31,7 +29,6 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequireUppercase = false;
     options.Password.RequiredLength = 3;
     options.Password.RequiredUniqueChars = 0;
-
 
 
     // Lockout settings.
