@@ -30,6 +30,6 @@ namespace Firma.Data.Data
         public DbSet<CartElement>? CartElement { get; set; }
         public DbSet<DefaultTest>? DefaultTest { get; set; }
         public DbSet<User>? User { get; set; }
-       // public DbSet<Order>? Order { get; set; }
+        public DbSet<Order>? Order { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using Firma.Data.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Firma.Data.Migrations
 {
     [DbContext(typeof(AlmondContext))]
-    partial class AlmondContextModelSnapshot : ModelSnapshot
+    [Migration("20230618122433_m22orderupdate")]
+    partial class m22orderupdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -177,18 +179,8 @@ namespace Firma.Data.Migrations
                     b.Property<int>("CartElementId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("ShippingAddress")
                         .IsRequired()
@@ -328,13 +320,13 @@ namespace Firma.Data.Migrations
 
             modelBuilder.Entity("Firma.Data.Data.Order", b =>
                 {
-                    b.HasOne("Firma.Data.Data.Sklep.CartElement", "CartElement")
+                    b.HasOne("Firma.Data.Data.Sklep.CartElement", "ItemCartElement")
                         .WithMany()
                         .HasForeignKey("CartElementId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("CartElement");
+                    b.Navigation("ItemCartElement");
                 });
 
             modelBuilder.Entity("Firma.Data.Data.Sklep.CartElement", b =>

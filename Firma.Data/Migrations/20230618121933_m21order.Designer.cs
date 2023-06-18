@@ -4,6 +4,7 @@ using Firma.Data.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,13 +12,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Firma.Data.Migrations
 {
     [DbContext(typeof(AlmondContext))]
-    partial class AlmondContextModelSnapshot : ModelSnapshot
+    [Migration("20230618121933_m21order")]
+    partial class m21order
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.18")
+                .HasAnnotation("ProductVersion", "6.0.15")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -174,21 +176,11 @@ namespace Firma.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"), 1L, 1);
 
-                    b.Property<int>("CartElementId")
+                    b.Property<int>("ItemCartElementCartElementId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("ShippingAddress")
                         .IsRequired()
@@ -197,7 +189,7 @@ namespace Firma.Data.Migrations
 
                     b.HasKey("OrderId");
 
-                    b.HasIndex("CartElementId");
+                    b.HasIndex("ItemCartElementCartElementId");
 
                     b.ToTable("Order");
                 });
@@ -328,13 +320,13 @@ namespace Firma.Data.Migrations
 
             modelBuilder.Entity("Firma.Data.Data.Order", b =>
                 {
-                    b.HasOne("Firma.Data.Data.Sklep.CartElement", "CartElement")
+                    b.HasOne("Firma.Data.Data.Sklep.CartElement", "ItemCartElement")
                         .WithMany()
-                        .HasForeignKey("CartElementId")
+                        .HasForeignKey("ItemCartElementCartElementId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("CartElement");
+                    b.Navigation("ItemCartElement");
                 });
 
             modelBuilder.Entity("Firma.Data.Data.Sklep.CartElement", b =>

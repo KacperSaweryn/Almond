@@ -75,7 +75,11 @@
         <div>
             @($" Wartość koszyka: {Model.AllDecimal:F} zł")
             <br>
+            <br>
             <a href="@Url.Action("ClearCart", "Cart")" class="btn red lighten-2">Wyczyść koszyk</a>
+            <br />
+            <br />
+            <a href="@Url.Action("ShippingDetails", "Order")" class="btn blue">Przejdź do szczegółów wysyłki</a>
         </div>
     </div>
 </div>
