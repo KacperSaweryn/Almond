@@ -1,4 +1,5 @@
 ﻿@model Firma.PortalWWW.Models.Shop.CartData
+
 @{
     ViewData["Title"] = "Koszyk";
     Layout = "~/Views/Shared/_CartLayout.cshtml";
@@ -21,13 +22,15 @@
         text-align: center;
     }
 
-    .quantity-button {
-        padding: 2px 8px;
-        margin: 0 4px;
-        background-color: #e0e0e0;
-        border-radius: 4px;
+    .info-link {
+        text-decoration: none;
+        color: inherit;
         cursor: pointer;
     }
+
+        .info-link:hover {
+            text-decoration: underline;
+        }
 </style>
 
 <div class="card">
@@ -35,301 +38,42 @@
         <span class="card-title">Twój koszyk</span>
         <table class="responsive-table">
             <thead>
-            <tr>
-                <th></th>
-                <th>Nazwa</th>
-                <th>Cena</th>
-                <th>Ilosc</th>
+                <tr>
+                    <th></th>
+                    <th>Nazwa</th>
+                    <th>Cena</th>
                     <th>Ilosc</th>
-            </tr>
+                </tr>
             </thead>
             <tbody>
-            @foreach (var element in Model.CartElements)
-            {
-                <tr>
-                    <td class="center-align">
-                        <img src="data:image;base64,@System.Convert.ToBase64String(element.Item.Photo)" alt="@element.Item.InfoGlowne" class="item-icon">
-                    </td>
-                    <td>
-                        <span>@element.Item.InfoGlowne</span>
-                    </td>
-                    <td>
-                        @($"{element.Item.Cena:F}")
-                    </td>
-                    <td>
-                        @($"{element.Quantity:F}") 
-                    </td>
-                    <td class="quantity-controls">
-                        <button class="quantity-button minus" data-item-id="@element.ItemId">-</button>
-                        <input class="quantity-input" type="number" value="@element.Quantity" min="1">
-                        <button class="quantity-button plus" data-item-id="@element.ItemId">+</button>
-                        <button class="update-quantity-button" data-item-id="@element.ItemId">Zapisz</button>
-
-                    </td>
-                </tr>
-            }
-
+                @foreach (var element in Model.CartElements)
+                {
+                    <tr>
+                        <td class="center-align">
+                            <a href="@Url.Action("Details", "Shop", new { id = element.ItemId })">
+                                <img src="data:image;base64,@System.Convert.ToBase64String(element.Item.Photo)" alt="@element.Item.InfoGlowne" class="item-icon" />
+                            </a>
+                        </td>
+                        <td>
+                            <span class="info-link" onclick="window.location.href='@Url.Action("Details", "Shop", new { id = element.ItemId })'">@element.Item.InfoGlowne</span>
+                        </td>
+                        <td>
+                            @($"{element.Item.Cena:F} zł")
+                        </td>
+                        <td>
+                            @($"{element.Quantity:F}")
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
         <div>
-            Wartość koszyka: @($"{Model.AllDecimal:F}")
+            @($" Wartość koszyka: {Model.AllDecimal:F} zł")
         </div>
     </div>
 </div>
 
-<script>
-    const minusButtons = document.querySelectorAll('.minus');
-    const plusButtons = document.querySelectorAll('.plus');
-    const quantityInputs = document.querySelectorAll('.quantity-input');
 
-    minusButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const itemId = button.getAttribute('data-item-id');
-            const input = button.nextElementSibling;
-            const quantity = parseInt(input.value, 10);
-
-            if (quantity > 1) {
-                input.value = quantity - 1;
-                updateQuantity(itemId, quantity - 1);
-            }
-        });
-    });
-
-    plusButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const itemId = button.getAttribute('data-item-id');
-            const input = button.previousElementSibling;
-            const quantity = parseInt(input.value, 10);
-
-            input.value = quantity + 1;
-            updateQuantity(itemId, quantity + 1);
-        });
-    });
-
-    function updateQuantity(itemId, quantity) {
-        const data = {
-            itemId: itemId,
-            quantity: quantity
-        };
-
-        // Make an AJAX request to update the quantity on the server
-        fetch('/Cart/UpdateQuantity', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to update quantity');
-                }
-                else {
-                    // Update the quantity on the page
-                    const quantityElement = document.querySelector(`.quantity-input[data-item-id="${itemId}"]`);
-                    quantityElement.value = quantity;
-                }
-            })
-            .catch(error => {
-                console.error(error);
-                // Handle error
-            });
-    }
-</script>
-
-
-@* @model Firma.PortalWWW.Models.Shop.CartData *@
-@* @{ *@
-@*     ViewData["Title"] = "Koszyk"; *@
-@*     Layout = "~/Views/Shared/_CartLayout.cshtml"; *@
-@* } *@
-@* *@
-@* <style> *@
-@*     .item-icon { *@
-@*         max-height: 60px; *@
-@*         max-width: 60px; *@
-@*         border-radius: 15%; *@
-@*     } *@
-@* *@
-@*     .quantity-controls { *@
-@*         display: flex; *@
-@*         align-items: center; *@
-@*     } *@
-@* *@
-@*     .quantity-input { *@
-@*         width: 40px; *@
-@*         text-align: center; *@
-@*     } *@
-@* *@
-@*     .quantity-button { *@
-@*         padding: 2px 8px; *@
-@*         margin: 0 4px; *@
-@*         background-color: #e0e0e0; *@
-@*         border-radius: 4px; *@
-@*         cursor: pointer; *@
-@*     } *@
-@* </style> *@
-@* *@
-@* <div class="card"> *@
-@*     <div class="card-content"> *@
-@*         <span class="card-title">Twój koszyk</span> *@
-@*         <table class="responsive-table"> *@
-@*             <thead> *@
-@*                 <tr> *@
-@*                     <th></th> *@
-@*                     <th>Nazwa</th> *@
-@*                     <th>Cena</th> *@
-@*                     <th>Ilosc</th> *@
-@*                 </tr> *@
-@*             </thead> *@
-@*             <tbody> *@
-@*                 @foreach (var element in Model.CartElements) *@
-@*                 { *@
-@*                     <tr> *@
-@*                         <td class="center-align"> *@
-@*                             <img src="data:image;base64,@System.Convert.ToBase64String(element.Item.Photo)" alt="@element.Item.InfoGlowne" class="item-icon"> *@
-@*                         </td> *@
-@*                         <td> *@
-@*                             <span>@element.Item.InfoGlowne</span> *@
-@*                         </td> *@
-@*                         <td> *@
-@*                             @($"{element.Item.Cena:F}") *@
-@*                         </td> *@
-@*                         <td class="quantity-controls"> *@
-@*                             <button class="quantity-button minus" data-item-id="@element.ItemId">-</button> *@
-@*                             <input class="quantity-input" type="number" value="@element.Quantity" min="1" readonly> *@
-@*                             <button class="quantity-button plus" data-item-id="@element.ItemId">+</button> *@
-@*                         </td> *@
-@*                     </tr> *@
-@*                 } *@
-@*             </tbody> *@
-@*         </table> *@
-@*         <div> *@
-@*             Wartość koszyka: @($"{Model.AllDecimal:F}") *@
-@*         </div> *@
-@*     </div> *@
-@* </div> *@
-@* *@
-@* <script> *@
-@*     const minusButtons = document.querySelectorAll('.minus'); *@
-@*     const plusButtons = document.querySelectorAll('.plus'); *@
-@* *@
-@*     minusButtons.forEach(button => { *@
-@*         button.addEventListener('click', () => { *@
-@*             const itemId = button.getAttribute('data-item-id'); *@
-@*             const input = button.nextElementSibling; *@
-@*             const quantity = parseInt(input.value, 10); *@
-@* *@
-@*             if (quantity > 1) { *@
-@*                 input.value = quantity - 1; *@
-@*             } *@
-@*         }); *@
-@*     }); *@
-@* *@
-@*     plusButtons.forEach(button => { *@
-@*         button.addEventListener('click', () => { *@
-@*             const itemId = button.getAttribute('data-item-id'); *@
-@*             const input = button.previousElementSibling; *@
-@*             const quantity = parseInt(input.value, 10); *@
-@* *@
-@*             input.value = quantity + 1; *@
-@*         }); *@
-@*     }); *@
-@* </script> *@
-
-
-@* WORKING!!!! *@
-@* @model Firma.PortalWWW.Models.Shop.CartData *@
-@* @{ *@
-@*     ViewData["Title"] = "Koszyk"; *@
-@*     Layout = "~/Views/Shared/_CartLayout.cshtml"; *@
-@* } *@
-@* *@
-@* <style> *@
-@*     .item-icon { *@
-@*         max-height: 60px; *@
-@*         max-width: 60px; *@
-@*         border-radius: 15%; *@
-@*     } *@
-@* *@
-@*     .quantity-controls { *@
-@*         display: flex; *@
-@*         align-items: center; *@
-@*     } *@
-@* *@
-@*     .quantity-input { *@
-@*         width: 40px; *@
-@*         text-align: center; *@
-@*     } *@
-@* *@
-@*     .quantity-button { *@
-@*         padding: 2px 8px; *@
-@*         margin: 0 4px; *@
-@*         background-color: #e0e0e0; *@
-@*         border-radius: 4px; *@
-@*         cursor: pointer; *@
-@*     } *@
-@* </style> *@
-@* *@
-@* <div class="card"> *@
-@*     <div class="card-content"> *@
-@*         <span class="card-title">Twój koszyk</span> *@
-@*         <table class="responsive-table"> *@
-@*             <thead> *@
-@*                 <tr> *@
-@*                     <th></th> *@
-@*                     <th>Nazwa</th> *@
-@*                     <th>Cena</th> *@
-@*                     <th>Ilosc</th> *@
-@*                 </tr> *@
-@*             </thead> *@
-@*             <tbody> *@
-@*                 @foreach (var element in Model.CartElements) *@
-@*                 { *@
-@*                     <tr> *@
-@*                         <td class="center-align"> *@
-@*                             <img src="data:image;base64,@System.Convert.ToBase64String(element.Item.Photo)" alt="@element.Item.InfoGlowne" class="item-icon"> *@
-@*                         </td> *@
-@*                         <td> *@
-@*                             <span>@element.Item.InfoGlowne</span> *@
-@*                         </td> *@
-@*                         <td> *@
-@*                             @($"{element.Item.Cena:F}") *@
-@*                         </td> *@
-@*                         <td class="quantity-controls"> *@
-@*                             <button class="quantity-button" onclick="updateQuantity('@Url.Action("UpdateQuantity", "Cart", new { id = element.ItemId, quantity = element.Quantity - 1 })')">-</button> *@
-@*                             <input class="quantity-input" type="number" value="@element.Quantity" min="1" readonly> *@
-@*                             <button class="quantity-button" onclick="updateQuantity('@Url.Action("UpdateQuantity", "Cart", new { id = element.ItemId, quantity = element.Quantity + 1 })')">+</button> *@
-@*                         </td> *@
-@* *@
-@*                     </tr> *@
-@*                 } *@
-@*             </tbody> *@
-@*         </table> *@
-@*         <div> *@
-@*             Wartość koszyka: @($"{Model.AllDecimal:F}") *@
-@*         </div> *@
-@*     </div> *@
-@* </div> *@
-@* *@
-@* <script> *@
-@*     function updateQuantity(url) { *@
-@*         fetch(url) *@
-@*             .then(response => response.json()) *@
-@*             .then(data => { *@
-@*                 if (data.success) { *@
-@*                     // Update the quantity in the table without refreshing the page *@
-@*                     const quantityElement = document.getElementById(`quantity-${data.itemId}`); *@
-@*                     quantityElement.textContent = data.quantity; *@
-@*                 } else { *@
-@*                     console.error(data.error); *@
-@*                 } *@
-@*             }) *@
-@*             .catch(error => { *@
-@*                 console.error(error); *@
-@*             }); *@
-@*     } *@
-@* </script> *@
 
 
 @* WORKING!!!! *@
@@ -370,7 +114,7 @@
 @*                         <span>@element.Item.InfoGlowne</span> *@
 @*                     </td> *@
 @*                     <td> *@
-@*                         @($"{element.Item.Cena:F}") *@
+@*                         @($"{element.Item.Cena:F} zł") *@
 @*                     </td> *@
 @*                     <td> *@
 @*                         @($"{element.Quantity:F}") *@
@@ -380,7 +124,7 @@
 @*             </tbody> *@
 @*         </table> *@
 @*         <div> *@
-@*             Wartość koszyka: @($"{Model.AllDecimal:F}") *@
+@*             @($"Wartość koszyka: {Model.AllDecimal:F} zł") *@
 @*         </div> *@
 @*     </div> *@
 @* </div> *@
