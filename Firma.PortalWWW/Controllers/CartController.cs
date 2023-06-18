@@ -34,39 +34,18 @@ namespace Firma.PortalWWW.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult ClearCart()
+        {
+            CartB cartB = new CartB(this._context, this.HttpContext);
+            cartB.ClearCart();
+            return RedirectToAction("Index");
+        }
         public async Task<IActionResult> RemoveFromCart(int id)
         {
             CartB cartB = new CartB(this._context, this.HttpContext);
             cartB.RemoveFromCart(id);
             return RedirectToAction("Index");
         }
-
-
-        [HttpPost]
-        public IActionResult UpdateQuantity(int id, int quantity)
-        {
-            CartB cartB = new CartB(this._context, this.HttpContext);
-            var cartElement = cartB.GetCartElements().Result.FirstOrDefault(e => e.ItemId == id);
-
-            if (cartElement != null)
-            {
-                if (quantity < 1)
-                {
-                    // Remove the item from the cart if the quantity becomes zero or negative
-                    cartB.RemoveFromCart(id);
-                    return Json(new { success = true, itemId = id, quantity = 0 });
-                }
-                else
-                {
-                    cartElement.Quantity = quantity;
-                    _context.SaveChanges();
-                    return Json(new { success = true, itemId = id, quantity });
-                }
-            }
-
-            return Json(new { success = false, error = "Item not found in the cart." });
-        }
-
 
 
     }

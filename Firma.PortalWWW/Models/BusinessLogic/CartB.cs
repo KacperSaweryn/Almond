@@ -80,23 +80,23 @@ namespace Firma.PortalWWW.Models.BusinessLogic
             return await items.SumAsync() ?? 0;
         }
 
+        public void ClearCart()
+        {
+            var cartElements = _context.CartElement.Where(e => e.SessionId == this.SessionId);
+            _context.CartElement.RemoveRange(cartElements);
+            _context.SaveChanges();
+        }
+
         public void RemoveFromCart(int itemId)
         {
             var cartElement = _context.CartElement.FirstOrDefault(e => e.SessionId == SessionId && e.ItemId == itemId);
 
             if (cartElement != null)
             {
-                if (cartElement.Quantity > 1)
-                {
-                    cartElement.Quantity--;
-                }
-                else
-                {
-                    _context.CartElement.Remove(cartElement);
-                }
-
+                _context.CartElement.Remove(cartElement);
                 _context.SaveChanges();
             }
         }
+
     }
 }
