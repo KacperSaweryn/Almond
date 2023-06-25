@@ -3,78 +3,23 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using Firma.Data.Data;
+using Firma.Data.Data.CMS;
 
 namespace Firma.PortalWWW.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly AlmondContext _context;
+        protected readonly AlmondContext _context;
 
         public HomeController(AlmondContext context)
         {
             _context = context;
         }
 
-        // public HomeController(ILogger<HomeController> logger)
-        // {
-        //     _logger = logger;
-        // }
-
-        // public IActionResult Index()
-        // {
-            // ViewBag.ModelParams =
-            // (
-            //     from parametr in _context.Params
-            //     orderby parametr.Pozycja
-            //     select parametr
-            // ).ToList();
-            //
-            // ViewBag.ModelStrony =
-            // (
-            //     from strona in _context.Page
-            //     orderby strona.Pozycja
-            //     select strona
-            // ).ToList();
-            //
-            //
-            // if (id == null)
-            // {
-            //return View();
-            //     //id = _context.Page.First().IdStrony;
-            // }
-            // else
-            // {
-            //     var item = _context.Page.Find(id);
-            //     return View(item);
-            // }
-            // if (id == null)
-            // {
-            //    // return View();
-            //     id = _context.Page.First().IdStrony;
-            // }
-            //
-            //     var item = _context.Page.Find(id);
-            //     return View(item);
-
-
-            // var item = _context.Page.Find(id);
-            // return View(item);
-
-            //odnajdujemy w DB strone o danym id
-            // var item = _context.Page.Find(id);
-            //
-            //
-            // return View(item);
-       // }
-
-
-        // public IActionResult Index()
-        // {
-        //     return View();
-        // }
-
+       
 
         public IActionResult Privacy()
         {
@@ -88,14 +33,23 @@ namespace Firma.PortalWWW.Controllers
 
         public IActionResult Contact()
         {
-            return View(); //widok będzie nazywał sie tak samo jak funkcja wiec mozna -> return View()
+            return View(); 
         }
 
+        [SuppressMessage("ReSharper.DPA", "DPA0009: High execution time of DB command", MessageId = "time: 1123ms")]
         public IActionResult Index(int? id)
         {
             ViewBag.ModelParams =
             (
                 from parametr in _context.Params
+                orderby parametr.Pozycja
+                select parametr
+            ).ToList();
+
+            ViewBag.ModelParamsFindUs =
+            (
+                from parametr in _context.Params 
+                where parametr.Typ=="findUs"
                 orderby parametr.Pozycja
                 select parametr
             ).ToList();
@@ -107,6 +61,19 @@ namespace Firma.PortalWWW.Controllers
                 select strona
             ).ToList();
 
+            ViewBag.ModelAktualnosci =
+            (
+                from aktualnosc in _context.News
+                orderby aktualnosc.Pozycja descending 
+                select aktualnosc
+            ).Take(3).ToList();
+
+            List<Page> list = new List<Page>();
+            foreach (Page page in (_context.Page.Where(strona => strona.LinkTytul == "Prywatność" || strona.LinkTytul=="Kontakt").OrderBy(strona => strona.Pozycja))) list.Add(page);
+            ViewBag.ModelInformacjeDodatkowe =
+            list;
+
+
 
             if (id == null)
             {
@@ -115,6 +82,7 @@ namespace Firma.PortalWWW.Controllers
 
             var item = _context.Page.Find(id);
             return View(item);
+
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

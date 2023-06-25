@@ -1,0 +1,42 @@
+﻿@model Firma.Data.Data.Sklep.ItemType
+
+@{
+    ViewData["Title"] = "Usuń";
+}
+
+<h3>Jesteś pewny, że chcesz usunąć?</h3>
+<div>
+    <h4>Typ</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nazwa)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nazwa)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Opis)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Opis)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Pozycja)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Pozycja)
+        </dd>
+    </dl>
+    
+    <br/>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ItemTypeId" />
+        <input type="submit" value="Usuń" class="btn btn-danger" />
+        
+        <div>
+            <br />
+            <a asp-action="Index" class="btn btn-secondary">Powrót</a>
+        </div>
+    </form>
+</div>

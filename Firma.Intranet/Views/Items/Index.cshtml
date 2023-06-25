@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Firma.Data.Data.Sklep.Item>
+
+@{
+    ViewData["Title"] = "Towary";
+}
+
+<h1>Towary</h1>
+
+@using (Html.BeginForm("Index", "Items", FormMethod.Get))
+{
+    <div class="form-group">
+        <label for="searchInfoGlowne">Wyszukaj po informacji głównej:</label>
+        <input type="text" class="form-control" name="searchInfoGlowne" id="searchInfoGlowne" value="@ViewBag.CurrentFilterInfoGlowne">
+    </div>
+    <br/>
+
+    <div class="form-group">
+        <label for="searchNazwa">Wyszukaj po rodzaju:</label>
+        <input type="text" class="form-control" name="searchNazwa" id="searchNazwa" value="@ViewBag.CurrentFilterNazwa">
+    </div>
+    <br/>
+    <div class="form-group">
+        <label for="searchOpis">Wyszukaj po opisie:</label>
+        <input type="text" class="form-control" name="searchOpis" id="searchOpis" value="@ViewBag.CurrentFilterOpis">
+    </div>
+    <br/>
+    <div class="form-group">
+        <label for="searchCena">Wyszukaj po cenie:</label>
+        <input type="text" class="form-control" name="searchCena" id="searchCena" value="@ViewBag.CurrentFilterCena">
+    </div>
+    <br/>
+    <button type="submit" class="btn btn-primary">Wyszukaj</button>
+}
+<br/>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Dodaj</a>
+</p>
+
+<div class="table-responsive">
+    <table class="table table-hover table-striped">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.InfoGlowne)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Opis)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cena)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Photo)
+            </th>
+            <th>
+
+                Rodzaj
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InfoGlowne)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Opis)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cena)
+                </td>
+                <td>
+                    <img src="data:image;base64,@System.Convert.ToBase64String(item.Photo)" class="img-thumbnail item-photo" alt="Item Photo">
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemType.Nazwa)
+                </td>
+                <td>
+                    <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.ItemId">Edycja</a>
+                    <a asp-action="Details" class="btn btn-info" asp-route-id="@item.ItemId">Szczegóły</a>
+                    <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.ItemId">Usuń</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

@@ -1,74 +1,94 @@
-﻿@* @model Firma.Data.Data.CMS.Page *@
-@* @{ *@
-@*     ViewData["Title"] = @Model.LinkTytul; *@
-@* } *@
-@* *@
-@* <h1 class="header center orange-text">@Model.Tytul</h1> *@
-@* <div class="row center"> *@
-@*     <h5 class="header col s12 light">@Model.Tresc</h5> *@
-@* </div> *@
+﻿@model Firma.Data.Data.CMS.Page
 @{
-    ViewData["Title"] = "Home Page";
-
+    ViewData["Title"] = @Model.LinkTytul;
 }
+
 <div id="index-banner" class="parallax-container">
     <div class="section no-pad-bot">
         <div class="container">
-<h1 class="header center grey-text text-lighten-4 ">Almond</h1>
+            @{
+                if (Model.Tytul.Equals("&nbsp;"))
+                {
+                }
+                else
+                {
+                    <h1 class="header center grey-text text-lighten-4 ">@Model.Tytul</h1>
+                }
+            }
 
-<div class="row center">
-    <h5 class="header col s12 light">Hodowla kotów</h5>
-</div>
-<div class="row center">
-    <a href="/images/catmainecoon2.png" id="download-button" class="btn-large waves-effect waves-light grey-background lighten-1">Zobacz kota</a>
-</div>
-       </div>
-</div>
-<div class="parallax"><img src="~/images/catmainecoon2.png" alt="Slodki kotek"></div>
+            <div class="row center">
+
+                @{
+                    if (Model.Tresc.Equals("&nbsp;"))
+                    {
+                    }
+                    else
+                    {
+                        <h5 class="header col s12 light">@Model.Tresc</h5>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+
+    @{
+        if (Context.Request.Path.ToString().Contains("Home"))
+        {
+            string url = Context.Request.Path.ToString();
+            int homeIndex = url.IndexOf("Home", StringComparison.Ordinal);
+            if (homeIndex >= 0)
+            {
+                string firstPart = url.Substring(0, homeIndex);
+                string newSrc = $"{firstPart}{Model.FotoUrl}";
+
+                <div class="parallax">
+                    <img src="@newSrc" onerror="this.style.display='none'" alt="@Model.AltText">
+                </div>
+            }
+        }
+        else
+        {
+            <div class="parallax">
+                <img src="@Model.FotoUrl" onerror="this.style.display='none'" alt="@Model.AltText">
+            </div>
+        }
+    }
+
 </div>
 <div class="container">
     <div class="section">
 
-        <!--   Icon Section   -->
         <div class="row">
-            <div class="col s12 m4">
-                <div class="icon-block">
-                    <h2 class="center grey-text">
-                        <i class="material-icons">pets</i>
-                    </h2>
-                    <h5 class="center">Zwierzęta</h5>
-
-                    <p class="light">Jesteśmy hodowlą z długoletnią tradycją i osobnikami najlepszej klasy.</p>
-                </div>
-            </div>
-
-            <div class="col s12 m4">
-                <div class="icon-block">
-                    <h2 class="center grey-text">
-                        <i class="material-icons">restaurant</i>
-                    </h2>
-                    <h5 class="center">Jedzenie</h5>
-
-                    <p class="light">Pomagamy dobrać odpowiednią dietę dla Twojego pupila.</p>
-                </div>
-            </div>
-
-            <div class="col s12 m4">
-                <div class="icon-block">
-                    <h2 class="center grey-text">
-                        <i class="material-icons">park</i>
-                    </h2>
-                    <h5 class="center">Drapaki</h5>
-
-                    <p class="light">Tworzymy drapaki najlepszej klasy. Pozwól, aby Twój pupil poczuł się jak w dżungli.</p>
-                </div>
-            </div>
+            
+            @await Html.PartialAsync("News", (IEnumerable<Firma.Data.Data.CMS.News>)ViewBag.ModelAktualnosci)
+           
         </div>
 
     </div>
 </div>
 <div class="parallax-container">
-    <div class="parallax"><img src="~/images/catmainecoon1.jpg" alt="cat-photo"></div>
+    @{
+        if (Context.Request.Path.ToString().Contains("Home"))
+        {
+            string url = Context.Request.Path.ToString();
+            int homeIndex = url.IndexOf("Home", StringComparison.Ordinal);
+            if (homeIndex >= 0)
+            {
+                string firstPart = url.Substring(0, homeIndex);
+                string newSrc = $"{firstPart}{Model.FotoUrlDown}";
+
+                <div class="parallax">
+                    <img src="@newSrc" onerror="this.style.display='none'" alt="@Model.AltTextDown">
+                </div>
+            }
+        }
+        else
+        {
+            <div class="parallax">
+                <img src="@Model.FotoUrlDown" onerror="this.style.display='none'" alt="@Model.AltTextDown">
+            </div>
+        }
+    }
 </div>
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="~/lib/materialize/js/materialize.js"></script>
@@ -78,6 +98,3 @@
                         var elems = document.querySelectorAll('.parallax');
                         var instances = M.Parallax.init(elems, options);
                     });</script>
-
-
-

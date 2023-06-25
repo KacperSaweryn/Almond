@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Firma.Data.Data.CMS.Page>
+
+<h5 class="grey-text text-lighten-4">Informacje dodatkowe</h5>
+<ul>
+    @foreach (var item in Model)
+    {
+        <li class="grey-text text-lighten-4">@Html.ActionLink(item.LinkTytul, "Index",
+        "Home", new { id = item.IdStrony }, new { @class = "greyLinks" })
+        </li>
+    }
+</ul>

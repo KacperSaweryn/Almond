@@ -1,5 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Firma.Data.Data.CMS
 {
@@ -22,6 +24,29 @@ namespace Firma.Data.Data.CMS
         [Display(Name = "Treść")]
         [Column(TypeName = "nvarchar(MAX)")]
         public string Tresc { get; set; }
+
+        [AllowNull]
+        [DefaultValue("")]
+        [Display(Name = "Zdjęcie na stronę")]
+        [Column(TypeName = "nvarchar(MAX)")]
+        public string FotoUrl { get; set; }
+
+
+        [AllowNull]
+        [Display(Name = "Tekst alternatywny")]
+        [MaxLength(15, ErrorMessage = "Tekst może zawierać max 15 znaków")]
+        public string AltText { get; set; }
+
+        [AllowNull]
+        [DefaultValue("")]
+        [Display(Name = "Dolne zdjęcie na stronę")]
+        [Column(TypeName = "nvarchar(MAX)")]
+        public string FotoUrlDown { get; set; }
+
+        [AllowNull]
+        [Display(Name = "Tekst alternatywny drugiego zdjecia")]
+        [MaxLength(15, ErrorMessage = "Tekst może zawierać max 15 znaków")]
+        public string AltTextDown { get; set; }
 
         [Required(ErrorMessage = "Pozycja wymagana")]
         [Display(Name = "Pozycja wyświetlania")]

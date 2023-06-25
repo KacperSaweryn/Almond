@@ -13,21 +13,40 @@ namespace Firma.Intranet.Controllers
 {
     public class AktualnoscController : Controller
     {
-        private readonly AlmondContext _context;
+
+        public readonly AlmondContext _context;
 
         public AktualnoscController(AlmondContext context)
         {
             _context = context;
         }
 
+
         // GET: Aktualnosc
-        public async Task<IActionResult> Index()
+        public  async Task<IActionResult> Index(string searchTytulNews, string searchTrescNews)
         {
-              return View(await _context.News.ToListAsync());
+            var news = from n in _context.News
+                select n;
+
+            if (!String.IsNullOrEmpty(searchTytulNews))
+            {
+                news = news.Where(p => p.Tytul.Contains(searchTytulNews));
+            }
+
+            if (!String.IsNullOrEmpty(searchTrescNews))
+            {
+                news = news.Where(p => p.Tresc.Contains(searchTrescNews));
+            }
+
+            ViewBag.CurrentFilterTytulNews = searchTytulNews;
+            ViewBag.CurrentFilterTrescNews = searchTrescNews;
+
+
+            return View(await news.ToListAsync());
         }
 
         // GET: Aktualnosc/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public  async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.News == null)
             {
@@ -44,18 +63,15 @@ namespace Firma.Intranet.Controllers
             return View(aktualnosc);
         }
 
-        // GET: Aktualnosc/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
 
         // POST: Aktualnosc/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdAktualnosci,LinkTytul,Tytul,Tresc,Pozycja")] News aktualnosc)
+        public async Task<IActionResult> Create(
+            [Bind("IdAktualnosci,LinkTytul,Tytul,Tresc,Rozwiniecie,FotoUrl,AltText,Icon,Pozycja")]
+            News aktualnosc)
         {
             if (ModelState.IsValid)
             {
@@ -63,11 +79,12 @@ namespace Firma.Intranet.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             return View(aktualnosc);
         }
 
         // GET: Aktualnosc/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public  async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.News == null)
             {
@@ -79,6 +96,7 @@ namespace Firma.Intranet.Controllers
             {
                 return NotFound();
             }
+
             return View(aktualnosc);
         }
 
@@ -87,7 +105,9 @@ namespace Firma.Intranet.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdAktualnosci,LinkTytul,Tytul,Tresc,Pozycja")] News aktualnosc)
+        public async Task<IActionResult> Edit(int id,
+            [Bind("IdAktualnosci,LinkTytul,Tytul,Tresc,Rozwiniecie,FotoUrl,AltText,Icon,Pozycja")]
+            News aktualnosc)
         {
             if (id != aktualnosc.IdAktualnosci)
             {
@@ -112,13 +132,15 @@ namespace Firma.Intranet.Controllers
                         throw;
                     }
                 }
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(aktualnosc);
         }
 
         // GET: Aktualnosc/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public  async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.News == null)
             {
@@ -144,19 +166,26 @@ namespace Firma.Intranet.Controllers
             {
                 return Problem("Entity set 'FirmaContext.Aktualnosc'  is null.");
             }
+
             var aktualnosc = await _context.News.FindAsync(id);
             if (aktualnosc != null)
             {
                 _context.News.Remove(aktualnosc);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool AktualnoscExists(int id)
         {
-          return _context.News.Any(e => e.IdAktualnosci == id);
+            return _context.News.Any(e => e.IdAktualnosci == id);
+        }
+
+        public IActionResult Create()
+        {
+            // ReSharper disable once Mvc.ViewNotResolved
+            return View();
         }
     }
 }

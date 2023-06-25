@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Firma.Data.Data.CMS.Params>
+
+<h5 class="grey-text text-lighten-4">Znajdź nas</h5>
+<ul>
+@foreach (var item in Model)
+{
+    <li>
+        <a class="grey-text text-lighten-4" href="@item.Tresc">
+            <i class="material-icons">@item.Nazwa</i>
+        </a>
+        
+    </li>
+    }
+</ul>
+
