@@ -10,13 +10,15 @@ namespace Firma.Data.Data
         [Key]
         public int OrderId { get; set; }
 
-        [Required(ErrorMessage = "Shipping address is required")]
-        [MaxLength(100, ErrorMessage = "Shipping address cannot exceed 100 characters")]
+        [Required(ErrorMessage = "Adres jest wymagany")]
+        [MaxLength(100, ErrorMessage = "Adres nie może być dłuższy niż 100 znaków")]
         public string ShippingAddress { get; set; }
-        [MaxLength(50, ErrorMessage = "Email cannot exceed 100 characters")]
+        [Required(ErrorMessage = "Email jest wymagany")]
+        [MaxLength(50, ErrorMessage = "Email nie może być dłuższy niż 50 znaków")]
         public string Email { get; set; }
 
-        [MaxLength(20, ErrorMessage = "Phone cannot exceed 100 characters")]
+        [Required(ErrorMessage = "Telefon jest wymagany")]
+        [MaxLength(20, ErrorMessage = "Telefon nie może być dłuższy niż 20 znaków")]
         public string Phone { get; set; }
 
         [Required(ErrorMessage = "Order date is required")]
